@@ -39,6 +39,11 @@ export const options = {
     type: 'string',
     default: defaults.pelotonPath,
   },
+  'keiser-bike-id': {
+    describe: '<id> Keiser bike Id to connect',
+    type: 'number',
+    default: defaults.keiserBikeId,
+  },
   'bot-power': {
     describe: '<watts> initial bot power',
     type: 'number',

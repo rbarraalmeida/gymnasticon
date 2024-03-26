@@ -29,6 +29,9 @@ export const defaults = {
   // peloton bike options
   pelotonPath: '/dev/ttyUSB0', // default path for usb to serial device
 
+  // Keiser bike id
+  keiserBikeId: 8, // default bike for keiser
+
   // test bike options
   botPower: 0, // power
   botCadence: 0, // cadence

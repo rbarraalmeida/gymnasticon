@@ -6,6 +6,7 @@ import {createDropoutFilter} from '../util/dropout-filter';
 
 export const KEISER_LOCALNAME = "M3";
 const KEISER_VALUE_MAGIC = Buffer.from([0x02, 0x01]); // identifies Keiser data message
+const KEISER_VALUE_IDX_EQUIPMENT_ID = 5; // 8-bit Equipment Code
 const KEISER_VALUE_IDX_POWER = 10; // 16-bit power (watts) data offset within packet
 const KEISER_VALUE_IDX_CADENCE = 6; // 16-bit cadence (1/10 rpm) data offset within packet
 const KEISER_VALUE_IDX_REALTIME = 4; // Indicates whether the data present is realtime (0, or 128 to 227)
@@ -35,6 +36,7 @@ export class KeiserBikeClient extends EventEmitter {
     this.onReceive = this.onReceive.bind(this);
   }
 
+
   /**
    * Bike behaves like a BLE beacon. Simulate connect by looking up MAC address
    * scanning and filtering subsequent announcements from this address.
@@ -44,8 +46,11 @@ export class KeiserBikeClient extends EventEmitter {
       throw new Error('Already connected');
     }
 
-    // Scan for bike
-    const filter = createNameFilter(KEISER_LOCALNAME);
+    // Scan for bike with equipment id
+    const filters = [];
+    filters.push(createNameFilter(KEISER_LOCALNAME));
+    filters.push(createBikeIdFilter(8));
+    const filter = (peripheral) => filters.every(f => f(peripheral));
     this.peripheral = await scan(this.noble, null, filter);
 
     this.state = 'connected';
@@ -191,6 +196,34 @@ export function bikeVersion(data) {
   }
   throw new Error('unable to parse bike version data');
 }
+
+
+/**
+ * Determine Keiser Bike ID.
+ * @param {buffer} data - raw characteristic value.
+ * @returns {number} id - ike id or -1 if id cant be found
+ *  */
+export function readBikeId(data) {
+  let id = -1;
+  if (data.indexOf(KEISER_VALUE_MAGIC) === 0) {
+    id = data.readUInt8(KEISER_VALUE_IDX_EQUIPMENT_ID);
+  }
+  console.log("Keiser M3 bike id: ", id);
+  return id;
+}
+
+/**
+ * Create a function that filters Keiser peripheral by bike id.
+ * @param {number} bikeId - Id for the bike to connect
+ * @returns {FilterFunction} - the filter function
+*/
+export function createBikeIdFilter(bikeId) {
+ return (peripheral) => peripheral && 
+  peripheral.advertisement && 
+  peripheral.advertisement.manufacturerData && 
+  bikeId === readBikeId(peripheral.advertisement.manufacturerData);
+}
+
 
 /**
  * Parse Keiser Bike Data characteristic value.
