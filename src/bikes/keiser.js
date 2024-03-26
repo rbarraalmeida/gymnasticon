@@ -27,11 +27,13 @@ const debuglog = require('debug')('gym:bikes:keiser');
 export class KeiserBikeClient extends EventEmitter {
   /**
    * Create a KeiserBikeClient instance.
-   * @param {Noble} noble - a Noble instance.
+   * @param {Noble} noble - a Noble instance
+   * @param {number} bikeId - the id for the bike
    */
-  constructor(noble) {
+  constructor(noble, bikeId) {
     super();
     this.noble = noble;
+    this.bikeId = bikeId;
     this.state = 'disconnected';
     this.onReceive = this.onReceive.bind(this);
   }
@@ -49,7 +51,7 @@ export class KeiserBikeClient extends EventEmitter {
     // Scan for bike with equipment id
     const filters = [];
     filters.push(createNameFilter(KEISER_LOCALNAME));
-    filters.push(createBikeIdFilter(8));
+    filters.push(createBikeIdFilter(this.bikeId));
     const filter = (peripheral) => filters.every(f => f(peripheral));
     this.peripheral = await scan(this.noble, null, filter);
 
