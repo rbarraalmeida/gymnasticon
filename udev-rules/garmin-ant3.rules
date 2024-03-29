@@ -1,0 +1,1 @@
+BUS=="usb", SYSFS{idVendor}=="0fcf", SYSFS{idProduct}=="1009", RUN+="/sbin/modprobe usbserial vendor=0x0fcf product=0x1009"

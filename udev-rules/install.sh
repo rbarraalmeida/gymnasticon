@@ -1,0 +1,1 @@
+sudo cp garmin-ant*.rules /etc/udev/rules.d/
