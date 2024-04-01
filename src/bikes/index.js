@@ -71,6 +71,7 @@ function createBotBikeClient(options, noble) {
   const args = [
     options.botPower,
     options.botCadence,
+    options.botSpeed,
     options.botHost,
     options.botPort,
   ]

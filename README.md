@@ -139,6 +139,8 @@ To run as an unprivileged user:
 
     # this gives cap_net_raw+eip to all node programs not just gymnasticon
     sudo setcap cap_net_raw+eip $(eval readlink -f $(which node))
+    sudo setcap cap_net_admin+eip $(eval readlink -f $(which python3.7))                          
+    sudo setcap cap_net_bind_service+eip $(eval readlink -f $(which python3.7))  
 
 To run at boot time, restart on exit and to avoid giving `cap_net_raw+eip` to the node binary it is recommended to run under systemd. See the `deploy/gymnasticon.service` from this repository for an example systemd unit file.
 
