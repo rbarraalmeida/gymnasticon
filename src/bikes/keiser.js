@@ -34,7 +34,7 @@ export class KeiserBikeClient extends EventEmitter {
    * @param {number} bikeId - the id for the bike
    * @param {number} useDistanceForSpeed - whether to use distance for speed
    */
-  constructor(noble, bikeId) {
+  constructor(noble, bikeId, useDistanceForSpeed) {
     super();
     this.noble = noble;
     this.bikeId = bikeId;
