@@ -119,7 +119,10 @@ export class KeiserBikeClient extends EventEmitter {
            if (fixed.cadence !== payload.cadence) {
              debuglog(`*** replaced zero cadence with previous cadence ${fixed.cadence}`);
            }
-           debuglog('Found Keiser M3: ', data.advertisement.localName, ' Address: ', data.address, ' Data: ', data.advertisement.manufacturerData, 'Power: ', fixed.power, 'Cadence: ', fixed.cadence);
+           if (fixed.speed !== payload.speed) {
+            debuglog(`*** replaced zero speed with previous speed ${fixed.speed}`);
+          }
+          debuglog('Found Keiser M3: ', data.advertisement.localName, ' Address: ', data.address, ' Data: ', data.advertisement.manufacturerData, 'Power: ', fixed.power, 'Cadence: ', fixed.cadence, 'Speed:', fixed.speed);
            this.emit(type, fixed);
            this.statsTimeout.reset();
            this.bikeTimeout.reset();
