@@ -263,7 +263,7 @@ export function parse(data) {
             // Distance is in 10x KM.
             distance = distance * (-1);
           }
-          speed = Math.round(((distance * 60 * 60 * 10)/(durationSeconds * 10))) / 10;
+          speed = Math.round((distance * 60 * 60)/(durationSeconds)) / 10;
         }
       } 
       return {type: 'stats', payload: {power, cadence, speed}};
