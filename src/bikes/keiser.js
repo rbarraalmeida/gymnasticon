@@ -9,6 +9,9 @@ const KEISER_VALUE_MAGIC = Buffer.from([0x02, 0x01]); // identifies Keiser data 
 const KEISER_VALUE_IDX_EQUIPMENT_ID = 5; // 8-bit Equipment Code
 const KEISER_VALUE_IDX_POWER = 10; // 16-bit power (watts) data offset within packet
 const KEISER_VALUE_IDX_CADENCE = 6; // 16-bit cadence (1/10 rpm) data offset within packet
+const KEISER_VALUE_IDX_DURATION_MINUTES = 14; // 8-bit duration minutes data offset within packet
+const KEISER_VALUE_IDX_DURATION_SECONDS = 15; // 8-bit duration seconds data offset within packet
+const KEISER_VALUE_IDX_DISTANCE = 16; // 16-bit Distance data offset within packet
 const KEISER_VALUE_IDX_REALTIME = 4; // Indicates whether the data present is realtime (0, or 128 to 227)
 const KEISER_VALUE_IDX_VER_MAJOR = 2; // 8-bit Version Major data offset within packet
 const KEISER_VALUE_IDX_VER_MINOR = 3; // 8-bit Version Major data offset within packet
@@ -29,11 +32,13 @@ export class KeiserBikeClient extends EventEmitter {
    * Create a KeiserBikeClient instance.
    * @param {Noble} noble - a Noble instance
    * @param {number} bikeId - the id for the bike
+   * @param {number} useDistanceForSpeed - whether to use distance for speed
    */
   constructor(noble, bikeId) {
     super();
     this.noble = noble;
     this.bikeId = bikeId;
+    this.useDistanceForSpeed = useDistanceForSpeed;
     this.state = 'disconnected';
     this.onReceive = this.onReceive.bind(this);
   }
@@ -243,9 +248,24 @@ export function parse(data) {
       // Realtime data received
       const power = data.readUInt16LE(KEISER_VALUE_IDX_POWER);
       const cadence = Math.round(data.readUInt16LE(KEISER_VALUE_IDX_CADENCE) / 10);
-      // TODO: consider taking this from keiser data: 
-      // https://dev.keiser.com/mseries/direct/#advertising-data-structure
-      const speed = calcPowerToSpeed(power);
+      let speed = 0;
+      if (useDistanceForSpeed) {
+        // See https://dev.keiser.com/mseries/direct/#advertising-data-structure
+        const durationMinutes = data.readUInt8(KEISER_VALUE_IDX_DURATION_MINUTES);
+        const durationSeconds = durationMinutes * 60 + data.readUInt8(KEISER_VALUE_IDX_DURATION_SECONDS);
+        let distance = data.readInt16LE(KEISER_VALUE_IDX_DISTANCE);
+        if (distance > 0) {
+          // Distance is in 10x Miles.
+          distance = distance * 1.609;
+        } else {
+          // Distance is in 10x KM.
+          distance = distance * (-1);
+        }
+        speed = Math.round(((distance * 60 * 60)/(durationSeconds * 10)));
+      } else {
+        // Uses power estimate
+        speed = Math.round(calcPowerToSpeed(power));
+      }
 
       return {type: 'stats', payload: {power, cadence, speed}};
     }

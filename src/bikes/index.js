@@ -63,7 +63,7 @@ function createIc4BikeClient(options, noble) {
 }
 
 function createKeiserBikeClient(options, noble) {
-  const {keiserBikeId} = options;
+  const {keiserBikeId, keiserUseDistanceForSpeed} = options;
   return new KeiserBikeClient(noble, keiserBikeId);
 }
 

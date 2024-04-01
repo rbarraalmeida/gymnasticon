@@ -33,6 +33,9 @@ export const defaults = {
   // Keiser bike id
   keiserBikeId: 8, // default bike for keiser
 
+  // Whether to use distance to compute distance for keiser
+  keiserUseDistanceForSpeed: 1,
+
   // test bike options
   botPower: 0, // power
   botCadence: 0, // cadence

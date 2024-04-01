@@ -44,6 +44,11 @@ export const options = {
     type: 'number',
     default: defaults.keiserBikeId,
   },
+  'keiser-use-distance-for-speed': {
+    describe: '<bool> Indicated whether to use distance to compute speed',
+    type: 'number',
+    default: defaults.keiserUseDistanceForSpeed,
+  },
   'bot-power': {
     describe: '<watts> initial bot power',
     type: 'number',
