@@ -1,14 +1,16 @@
 import test from 'tape';
-import {parse} from '../../bikes/keiser';
+import {KeiserBikeClient} from '../../bikes/keiser'
 import {bikeVersion} from '../../bikes/keiser';
 
 /**
  * See https://dev.keiser.com/mseries/direct/#data-parse-example for a
- * data parse example of the below test case
+ * data parse example of the below test cases
  */
-test('parse() parses Keiser indoor bike data values', t => {
+
+test('parse() parses Keiser indoor bike data values - speed from power', t => {
   const buf = Buffer.from('0201063000383803460573000D00042701000A', 'hex');
-  const {type, payload: {power, cadence, speed}} = parse(buf);
+  const keiserBike = new KeiserBikeClient(null, 0, 0);
+  const {type, payload: {power, cadence, speed}} = keiserBike.parse(buf);
   t.equal(type, 'stats', 'message type');
   t.equal(power, 115, 'power (watts)');
   t.equal(cadence, 82, 'cadence (rpm)');
