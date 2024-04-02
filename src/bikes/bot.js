@@ -12,7 +12,7 @@ export class BotBikeClient extends EventEmitter {
    * Create a BotBikeClient instance.
    * @param {number} power - initial power (watts)
    * @param {number} cadence - initial cadence (rpm)
-   * @param {number} speed - initial speed (km/h)
+   * @param {string} speed - initial speed (km/h)
    * @param {string} host - host to listen on for udp control interface
    * @param {number} port - port to listen on for udp control interface
    */

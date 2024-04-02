@@ -29,7 +29,7 @@ export function createDropoutFilter() {
     if (prev !== null && curr.cadence === 0 && (curr.power > 0 || parseFloat(curr.speed) > 0) && prev.cadence > 0) {
       fixed.cadence = prev.cadence;
     }
-    if (prev !== null && curr.speed === '0.0' && (curr.power > 0 || curr.cadence > 0) && parseFloat(prev.speed) > 0) {
+    if (prev !== null && parseFloat(curr.speed) <= 1.0 && (curr.power > 0 || curr.cadence > 0) && parseFloat(prev.speed) > 1.0) {
       fixed.speed = prev.speed;
     }
     prev = curr;

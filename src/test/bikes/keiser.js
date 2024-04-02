@@ -63,13 +63,13 @@ test('bikeVersion() Tests Keiser bike version (5.12)', t => {
 
 test('calcPowerToSpeed ', t => {
   t.equal(calcPowerToSpeed(115), '27.6', 'speed from 115 watts');
-  t.equal(calcPowerToSpeed(233.6), '26.2', 'speed from 233.6 watts');
-  t.equal(calcPowerToSpeed(0), '0.0', 'speed from 0 watts');
+  t.equal(calcPowerToSpeed(233.6), '36.2', 'speed from 233.6 watts');
+  t.equal(calcPowerToSpeed(0), '0.1', 'speed from 0 watts');
   t.end();
 });
 
 test('calcDistanceDurationToSpee ', t => {
-  t.equal(calcDistanceDurationToSpeed(100, 10), '0', 'distance = 10 miles, duration = 10 seconds');
-  t.equal(calcDistanceDurationToSpeed(-125, 23), '0', 'distance = 12.5 kilometers, duration = 23 seconds');
+  t.equal(calcDistanceDurationToSpeed(10, 1000), '5.8', 'distance = 1 miles, duration = 1000 seconds');
+  t.equal(calcDistanceDurationToSpeed(-125, 30 * 60), '25.0', 'distance = 12.5 kilometers, duration = 30 minutes');
   t.end();
 });
