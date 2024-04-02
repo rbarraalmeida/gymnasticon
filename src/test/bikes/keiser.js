@@ -1,6 +1,7 @@
 import test from 'tape';
-import {parse} from '../../bikes/keiser'
 import {bikeVersion} from '../../bikes/keiser';
+import {calcPowerToSpeed} from '../../bikes/keiser';
+import {parse} from '../../bikes/keiser'
 
 /**
  * See https://dev.keiser.com/mseries/direct/#data-parse-example for a
@@ -13,7 +14,7 @@ test('parse() parses Keiser indoor bike data values - speed from power', t => {
   t.equal(type, 'stats', 'message type');
   t.equal(power, 115, 'power (watts)');
   t.equal(cadence, 82, 'cadence (rpm)');
-  t.equal(speed, '27.63', 'speed (km/h)');
+  t.equal(speed, '27.6', 'speed (km/h)');
   t.end();
 });
 
@@ -23,7 +24,7 @@ test('parse() parses Keiser indoor bike data values - speed from distance', t =>
   t.equal(type, 'stats', 'message type');
   t.equal(power, 115, 'power (watts)');
   t.equal(cadence, 82, 'cadence (rpm)');
-  t.equal(speed, '27.63', 'speed (km/h)');
+  t.equal(speed, '2.1', 'speed (km/h)');
   t.end();
 });
 
@@ -56,5 +57,18 @@ test('bikeVersion() Tests Keiser bike version (5.12)', t => {
   const {version, timeout} = bikeVersion(bufver);
   t.equal(version, '5.12', 'Version: 5.12');
   t.equal(timeout, 7, 'Timeout: 7 second');
+  t.end();
+});
+
+test('calcPowerToSpeed ', t => {
+  t.equal(calcPowerToSpeed(115), '27.6', 'speed from 115 watts');
+  t.equal(calcPowerToSpeed(233.6), '26.2', 'speed from 233.6 watts');
+  t.equal(calcPowerToSpeed(0), '0.0', 'speed from 0 watts');
+  t.end();
+});
+
+test('calcDistanceDurationToSpee ', t => {
+  t.equal(calcDistanceDurationToSpee(100, 10), '0', 'distance = 10 miles, duration = 10 seconds');
+  t.equal(calcDistanceDurationToSpee(-125, 23), '0', 'distance = 12.5 kilometers, duration = 23 seconds');
   t.end();
 });
