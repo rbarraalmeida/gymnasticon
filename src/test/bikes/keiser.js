@@ -1,6 +1,7 @@
 import test from 'tape';
 import {bikeVersion} from '../../bikes/keiser';
 import {calcPowerToSpeed} from '../../bikes/keiser';
+import {calcDistanceDurationToSpeed} from '../../bikes/keiser';
 import {parse} from '../../bikes/keiser'
 
 /**
@@ -68,7 +69,7 @@ test('calcPowerToSpeed ', t => {
 });
 
 test('calcDistanceDurationToSpee ', t => {
-  t.equal(calcDistanceDurationToSpee(100, 10), '0', 'distance = 10 miles, duration = 10 seconds');
-  t.equal(calcDistanceDurationToSpee(-125, 23), '0', 'distance = 12.5 kilometers, duration = 23 seconds');
+  t.equal(calcDistanceDurationToSpeed(100, 10), '0', 'distance = 10 miles, duration = 10 seconds');
+  t.equal(calcDistanceDurationToSpeed(-125, 23), '0', 'distance = 12.5 kilometers, duration = 23 seconds');
   t.end();
 });
