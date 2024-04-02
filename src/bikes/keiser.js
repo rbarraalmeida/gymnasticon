@@ -276,11 +276,11 @@ export function calcPowerToSpeed(power) {
   let speed = 0;
   const r = Math.sqrt(power);
   if (power < 26) {
-    speed = ( ( 0.057 - 0.172 * r + 0.759 * Math.pow(r,2) - 0.079 * Math.pow(r,3)) * 1.609344 ).toFixed(2);
+    speed = ( ( 0.057 - 0.172 * r + 0.759 * Math.pow(r,2) - 0.079 * Math.pow(r,3)) * 1.609344 ).toFixed(1);
   } else {
-    speed = ( ( -1.635 + 2.325 * r - 0.064 * Math.pow(r,2) + 0.001 * Math.pow(r,3)) * 1.609344 ).toFixed(2);
+    speed = ( ( -1.635 + 2.325 * r - 0.064 * Math.pow(r,2) + 0.001 * Math.pow(r,3)) * 1.609344 ).toFixed(1);
   }
-  return Math.round(speed * 10) / 10;
+  return speed;
 }
 
 export function calcDistanceDurationToSpeed(distance, durationSeconds) {
@@ -291,5 +291,5 @@ export function calcDistanceDurationToSpeed(distance, durationSeconds) {
     // Distance is in 10x KM.
     distance = distance * (-1);
   }
-  return Math.round((distance * 60 * 60)/(durationSeconds)) / 10;
+  return ((distance * 60 * 60)/(durationSeconds / 10)).toFixed(1);
 }
