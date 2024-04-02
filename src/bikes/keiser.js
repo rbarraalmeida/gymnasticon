@@ -253,7 +253,7 @@ export function parse(data) {
       const cadence = Math.round(data.readUInt16LE(KEISER_VALUE_IDX_CADENCE) / 10);
       // Uses power estimate
       let speed = Math.round(calcPowerToSpeed(power) * 10) / 10;
-      if (useDistanceForSpeed) {
+      if (this.useDistanceForSpeed) {
         // See https://dev.keiser.com/mseries/direct/#advertising-data-structure
         const durationMinutes = data.readUInt8(KEISER_VALUE_IDX_DURATION_MINUTES);
         const durationSeconds = durationMinutes * 60 + data.readUInt8(KEISER_VALUE_IDX_DURATION_SECONDS);
