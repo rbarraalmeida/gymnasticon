@@ -110,7 +110,7 @@ export class KeiserBikeClient extends EventEmitter {
      try {
        if (data.address == this.peripheral.address) {
          this.emit('data', data);
-         const {type, payload} = this.parse(data.advertisement.manufacturerData);
+         const {type, payload} = this.parse(data.advertisement.manufacturerData, this.useDistanceForSpeed);
          if (type === 'stats') {
            const fixed = this.fixDropout(payload);
            if (fixed.power !== payload.power) {
@@ -240,11 +240,12 @@ export function createBikeIdFilter(bikeId) {
  * Consider if provided value are realtime or review mode
  * See https://dev.keiser.com/mseries/direct/#data-type
  * @param {buffer} data - raw characteristic value.
+ * @param {useDistanceForSpeed} number - whether to use distance for speed
  * @returns {object} message - parsed message
  * @returns {string} message.type - message type
  * @returns {object} message.payload - message payload
  */
-export function parse(data) {
+export function parse(data, useDistanceForSpeed) {
   if (data.indexOf(KEISER_VALUE_MAGIC) === 0) {
     const realtime = data.readUInt8(KEISER_VALUE_IDX_REALTIME);
     if (realtime === 0 || (realtime > 128 && realtime < 255)) {
@@ -253,7 +254,7 @@ export function parse(data) {
       const cadence = Math.round(data.readUInt16LE(KEISER_VALUE_IDX_CADENCE) / 10);
       // Uses power estimate
       let speed = Math.round(calcPowerToSpeed(power) * 10) / 10;
-      if (this.useDistanceForSpeed) {
+      if (useDistanceForSpeed) {
         // See https://dev.keiser.com/mseries/direct/#advertising-data-structure
         const durationMinutes = data.readUInt8(KEISER_VALUE_IDX_DURATION_MINUTES);
         const durationSeconds = durationMinutes * 60 + data.readUInt8(KEISER_VALUE_IDX_DURATION_SECONDS);
