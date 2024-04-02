@@ -291,5 +291,5 @@ export function calcDistanceDurationToSpeed(distance, durationSeconds) {
     // Distance is in 10x KM.
     distance = distance * (-1);
   }
-  return ((distance * 60 * 60)/(durationSeconds / 10)).toFixed(1);
+  return ((distance * 60 * 60)/(durationSeconds * 10)).toFixed(1);
 }
