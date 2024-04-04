@@ -110,7 +110,7 @@ export class KeiserBikeClient extends EventEmitter {
      try {
        if (data.address == this.peripheral.address) {
          this.emit('data', data);
-         const {type, payload} = this.parse(data.advertisement.manufacturerData, this.useDistanceForSpeed);
+         const {type, payload} = parse(data.advertisement.manufacturerData, this.useDistanceForSpeed);
          if (type === 'stats') {
            const fixed = this.fixDropout(payload);
            if (fixed.power !== payload.power) {
