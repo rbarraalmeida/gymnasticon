@@ -1,5 +1,5 @@
-import {blessed} from "blessed";
-import {contrib} from "blessed-contrib";
+import {blessed} from "blessed"
+import {contrib} from "blessed-contrib"
 
 export class TextClient {
   /**
@@ -13,35 +13,40 @@ export class TextClient {
   create() {
     this.screen = blessed.screen({
       smartCSR: true,
+      dockBorders: true,
     });
 
     this.screen.title = 'Gymnasticon';
 
-
-    this.cadenceDisplay = contrib.lcd({
-        label: 'Cadence RPM',
-        elements: 3
+    // Create a box perfectly centered horizontally and vertically.
+    var box = blessed.box(
+        {
+          top: 'center',
+          left: 'center',
+          width: '50%',
+          height: '50%',
+          content: 'Hello {bold}world{/bold}!',
+          tags: true,
+          border: { 
+            type: 'line'
+        },
+        style: {
+            fg: 'white',
+            bg: 'magenta',
+            border: {
+                fg: '#f0f0f0'
+            },
+            hover: {
+                bg: 'green'
+            }
+        }
     });
-    this.screen.append(this.cadenceDisplay);
 
-    this.speedDisplay = contrib.lcd({
-        label: 'Speed (Km/h)',
-        elements: 4
-    });
-    this.screen.append(this.speedDisplay);
-
-    this.powerDisplay = contrib.lcd({
-        label: 'Power (Watts)',
-        elements: 3
-    });
-    this.screen.append(this.powerDisplay);
-
+    this.screen.append(box);
+    this.screen.render();
   }
 
   update(cadence, speed, power) {
-    this.cadenceDisplay.setDisplay(cadence);
-    this.speedDisplay.setDisplay(speed);
-    this.powerDisplay.setDisplay(power);
-    this.screen.render();
+    //this.screen.render();
   }
 }
