@@ -7,15 +7,15 @@ export class Logger {
   }
 
   log(...args) {
-    //return this._cons.log(this.prefix, ...args);
+    return this._cons.log(this.prefix, ...args);
   }
 
   error(...args) {
-    //return this._cons.error(this.prefix, ...args);
+    return this._cons.error(this.prefix, ...args);
   }
 
   get prefix() {
     const time = new Date().toISOString();
-    //return `[${time}]`;
+    return `[${time}]`;
   }
 }

@@ -147,24 +147,24 @@ export class App {
    term( 'The terminal size is %dx%d' , term.width , term.height ) ;
    
    // Move the cursor at the upper-left corner
-   term.moveTo( 1 , 1 ) ;
+   //term.moveTo( 1 , 1 ) ;
    
    // We can always pass additional arguments that will be displayed...
-   term.moveTo( 1 , 1 , 'Upper-left corner' ) ;
+   //term.moveTo( 1 , 1 , 'Upper-left corner' ) ;
    
    // ... and formated
-   term.moveTo( 1 , 1 , "My name is %s, I'm %d.\n" , 'Jack' , 32 ) ;
+   //term.moveTo( 1 , 1 , "My name is %s, I'm %d.\n" , 'Jack' , 32 ) ;
    
    // ... or even combined with other styles
-   term.moveTo.cyan( 1 , 1 , "My name is %s, I'm %d.\n" , 'Jack' , 32  ) ;
+   //term.moveTo.cyan( 1 , 1 , "My name is %s, I'm %d.\n" , 'Jack' , 32  ) ;
    
    // Get some user input
-   term.magenta( "Enter your name: " ) ;
-   term.inputField(
-     function( error , input ) {
-       term.green( "\nYour name is '%s'\n" , input ) ;
-     }
-   ) ;
+   //term.magenta( "Enter your name: " ) ;
+   //term.inputField(
+   //  function( error , input ) {
+   //    term.green( "\nYour name is '%s'\n" , input ) ;
+   //  }
+   //) ;
        // test
    
 
