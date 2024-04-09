@@ -16,85 +16,37 @@ export class TextClient {
 
     this.screen.title = 'Gymnasticon';
 
-    this.cadenceDisplay = blessed.bigtext({
-        content: '',
-        border: {
-          type: 'line'
-        },
-        style: {
-          fg: 'white',
-          bg: 'magenta',
-          border: {
-            fg: '#f0f0f0'
-          },
-          hover: {
-            bg: 'green'
-          }
-        }
+    this.cadenceDisplay = contrib.lcd({
+        label: 'Cadence RPM',
+        elements: 3
     });
     this.screen.append(this.cadenceDisplay);
 
-    this.speedDisplay =  blessed.bigtext({
-        content: '',
-        border: {
-          type: 'line'
-        },
-        style: {
-          fg: 'white',
-          bg: 'magenta',
-          border: {
-            fg: '#f0f0f0'
-          },
-          hover: {
-            bg: 'green'
-          }
-        }
+    this.speedDisplay = contrib.lcd({
+        label: 'Speed (Km/h)',
+        elements: 4
     });
     this.screen.append(this.speedDisplay);
 
-    this.powerDisplay =  blessed.bigtext({
-        content: '',
-        border: {
-          type: 'line'
-        },
-        style: {
-          fg: 'white',
-          bg: 'magenta',
-          border: {
-            fg: '#f0f0f0'
-          },
-          hover: {
-            bg: 'green'
-          }
-        }
+    this.powerDisplay = contrib.lcd({
+        label: 'Power (Watts)',
+        elements: 3
     });
     this.screen.append(this.powerDisplay);
 
-    this.relativePowerDisplay =  blessed.bigtext({
-        content: '',
-        border: {
-          type: 'line'
-        },
-        style: {
-          fg: 'white',
-          bg: 'magenta',
-          border: {
-            fg: '#f0f0f0'
-          },
-          hover: {
-            bg: 'green'
-          }
-        }
+    this.relativePowerDisplay = contrib.lcd({
+        label: 'FTP %',
+        elements: 3
     });
     this.screen.append(this.relativePowerDisplay);
   }
 
   update(cadence, speed, power) {
-    this.cadenceDisplay.setContent(cadence);
-    this.speedDisplay.setContent(speed);
-    this.powerDisplay.setContent(power);
+    this.cadenceDisplay.setDisplay(cadence);
+    this.speedDisplay.setDisplay(speed);
+    this.powerDisplay.setDisplay(power);
     var relativePower = ((power * 100) / this.riderFtp).toFixed(0);
-    this.relativePowerDisplay.setCOntent(relativePower);
+    this.relativePowerDisplay.setDisplay(relativePower);
     this.screen.render();
   }
 }
