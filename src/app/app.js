@@ -90,9 +90,6 @@ export class App {
     }
 
     this.ui = new TextClient(opts.riderFtp);
-    // Temporary for testing ony.
-    this.ui.update(60, 25.4, 650);
-    // Temporary for testing ony.
     this.opts = opts;
     this.logger = new Logger();
     this.crankSimulation = new CrankSimulation();
@@ -123,6 +120,12 @@ export class App {
 
   async run() {
     try {
+
+    // Temporary for testing ony.
+    this.ui.create();
+    this.ui.update(60, 25.4, 650);
+    // Temporary for testing ony.
+
       process.on('SIGINT', this.onSigInt);
       process.on('exit', this.onExit);
 
