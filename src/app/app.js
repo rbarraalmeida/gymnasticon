@@ -11,7 +11,6 @@ import {WheelSimulation} from './wheelSimulation';
 import {Timer} from '../util/timer';
 import {Logger} from '../util/logger';
 import {createAntStick} from '../util/ant-stick';
-import {TextClient} from './ui/textClient';
 
 const debuglog = require('debug')('gym:app:app');
 
@@ -59,9 +58,6 @@ export const defaults = {
   // speed adjustment (to compensate for inaccurate speed measurements on bike)
   speedScale: 1.0, // multiply speed by this
   speedOffset: 0.0, // add this to speed
-
-  //FTP related fields
-  riderFtp: 209, // FTP in Watts
 };
 
 /**
@@ -89,10 +85,6 @@ export class App {
       process.env['NOBLE_MULTI_ROLE'] = '1'
     }
 
-    this.ui = new TextClient(opts.riderFtp);
-    // Temporary for testing ony.
-    this.ui.update(60, 25.4, 650);
-    // Temporary for testing ony.
     this.opts = opts;
     this.logger = new Logger();
     this.crankSimulation = new CrankSimulation();
