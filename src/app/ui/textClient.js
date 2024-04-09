@@ -16,7 +16,7 @@ export class TextClient {
 
     this.screen.title = 'Gymnasticon';
 
-    this.cadenceDisplay = blessed.box({
+    this.cadenceDisplay = blessed.bigtext({
         content: 'teste',
         border: {
           type: 'line'
@@ -34,7 +34,7 @@ export class TextClient {
     });
     this.screen.append(this.cadenceDisplay);
 
-    this.speedDisplay =  blessed.box({
+    this.speedDisplay =  blessed.bigtext({
         content: 'teste',
         border: {
           type: 'line'
@@ -52,7 +52,7 @@ export class TextClient {
     });
     this.screen.append(this.speedDisplay);
 
-    this.powerDisplay =  blessed.box({
+    this.powerDisplay =  blessed.bigtext({
         content: 'teste',
         border: {
           type: 'line'
@@ -70,7 +70,7 @@ export class TextClient {
     });
     this.screen.append(this.powerDisplay);
 
-    this.relativePowerDisplay =  blessed.box({
+    this.relativePowerDisplay =  blessed.bigtext({
         content: 'teste',
         border: {
           type: 'line'
