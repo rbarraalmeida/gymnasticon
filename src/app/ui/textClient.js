@@ -1,3 +1,6 @@
+import {blessed} from "blessed";
+import {contrib} from "blessed-contrib";
+
 export class TextClient {
   /**
    * Create a TextClient instance.
@@ -8,13 +11,12 @@ export class TextClient {
   }
 
   create() {
-    var blessed = require('blessed'), contrib = require('blessed-contrib');
-
     this.screen = blessed.screen({
       smartCSR: true,
     });
 
     this.screen.title = 'Gymnasticon';
+
 
     this.cadenceDisplay = contrib.lcd({
         label: 'Cadence RPM',
@@ -34,19 +36,12 @@ export class TextClient {
     });
     this.screen.append(this.powerDisplay);
 
-    this.relativePowerDisplay = contrib.lcd({
-        label: 'FTP %',
-        elements: 3
-    });
-    this.screen.append(this.relativePowerDisplay);
   }
 
   update(cadence, speed, power) {
     this.cadenceDisplay.setDisplay(cadence);
     this.speedDisplay.setDisplay(speed);
     this.powerDisplay.setDisplay(power);
-    var relativePower = ((power * 100)/ this.riderFtp).toFixed(0);
-    this.relativePowerDisplay.setDisplay(relativePower);
     this.screen.render();
   }
 }
