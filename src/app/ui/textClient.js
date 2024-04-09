@@ -1,5 +1,3 @@
-import {blessed} from "blessed"
-import {contrib} from "blessed-contrib"
 
 export class TextClient {
   /**
@@ -10,8 +8,11 @@ export class TextClient {
     this.riderFtp = riderFtp;
   }
 
+
   create() {
-    this.screen = blessed.screen({
+    this.blessed = require('blessed');
+
+    this.screen = this.blessed.screen({
       smartCSR: true,
       dockBorders: true,
     });
