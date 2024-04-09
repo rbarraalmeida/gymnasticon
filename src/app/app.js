@@ -190,6 +190,7 @@ export class App {
     let {crank, wheel} = this;
     this.server.updateMeasurement({ power, crank, wheel });
     this.antServer.updateMeasurement({ power, cadence });
+    this.ui.update(cadence, speed,power);
   }
 
   onBikeStatsTimeout() {
