@@ -42,12 +42,9 @@ export class TextClient {
             }
         }
     });
-
-    this.screen.append(box);
-    this.screen.render();
   }
 
   update(cadence, speed, power) {
-    //this.screen.render();
+    this.screen.render();
   }
 }
