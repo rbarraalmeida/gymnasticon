@@ -45,7 +45,7 @@ export class TextClient {
     this.cadenceDisplay.setDisplay(cadence);
     this.speedDisplay.setDisplay(speed);
     this.powerDisplay.setDisplay(power);
-    var relativePower = ((power * 100) / this.riderFtp).toFixed(0);
+    var relativePower = ((power * 100)/ this.riderFtp).toFixed(0);
     this.relativePowerDisplay.setDisplay(relativePower);
     this.screen.render();
   }
