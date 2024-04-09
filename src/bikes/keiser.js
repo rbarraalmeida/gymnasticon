@@ -18,7 +18,7 @@ const KEISER_VALUE_IDX_VER_MINOR = 3; // 8-bit Version Major data offset within 
 const KEISER_STATS_NEWVER_MINOR = 30; // Version Minor when broadcast interval was changed from ~ 2 sec to ~ 0.3 sec
 const KEISER_STATS_TIMEOUT_OLD = 7.0; // Old Bike: If no stats received within 7 sec, reset power and cadence to 0
 const KEISER_STATS_TIMEOUT_NEW = 2.0; // New Bike: If no stats received within 2 sec, reset power and cadence to 0
-const KEISER_BIKE_TIMEOUT = 30 * 60.0; // Consider bike disconnected if no stats have been received for 30 minutes
+const KEISER_BIKE_TIMEOUT = 60 * 60.0; // Consider bike disconnected if no stats have been received for 60 minutes
 
 const debuglog = require('debug')('gym:bikes:keiser');
 
@@ -120,9 +120,9 @@ export class KeiserBikeClient extends EventEmitter {
              debuglog(`*** replaced zero cadence with previous cadence ${fixed.cadence}`);
            }
            if (fixed.speed !== payload.speed) {
-            debuglog(`*** replaced zero speed with previous speed ${fixed.speed}`);
-          }
-          debuglog('Found Keiser M3: ', data.advertisement.localName, ' Address: ', data.address, ' Data: ', data.advertisement.manufacturerData, 'Power: ', fixed.power, 'Cadence: ', fixed.cadence, 'Speed:', fixed.speed);
+             debuglog(`*** replaced zero speed with previous speed ${fixed.speed}`);
+           }
+           debuglog('Found Keiser M3: ', data.advertisement.localName, ' Address: ', data.address, ' Data: ', data.advertisement.manufacturerData, 'Power: ', fixed.power, 'Cadence: ', fixed.cadence, 'Speed:', fixed.speed);
            this.emit(type, fixed);
            this.statsTimeout.reset();
            this.bikeTimeout.reset();
