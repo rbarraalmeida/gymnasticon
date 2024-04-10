@@ -11,7 +11,7 @@ const CHARACTERS = ['0', '1', '2', '3',
     'R', 'T', 'V', 'O'];
 
 const termkit = require('terminal-kit');
-const DEBUG = false;
+const DEBUG = true;
 
 export class TextClient {
   /**
@@ -30,8 +30,10 @@ export class TextClient {
 
   build() {
     this.term = termkit.terminal;
-    this.term.fullscreen();
-    this.term.hideCursor();
+    if (!DEBUG) {
+      this.term.fullscreen();
+      this.term.hideCursor();
+    }
 
     this.buffer = new termkit.ScreenBuffer( 
       { dst: this.term , 
@@ -100,22 +102,22 @@ export class TextClient {
     lines.push(`${POWER_LABEL}      ${this.pad(this.power, 3)}`);
     lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 5)}`);
 
-    if (DEBUG) {
-      lines.forEach((element) => console.log(element));
-      console.log(`zonecolor: ${zoneColor}`);
-      console.log(`intoZone: ${intoZone}`);
-    } else {
-      this.buffer.fill({ attr: { bgColor: 'black' }});
-      this.yPos = 1;
-      lines.forEach((element) => this.drawLine(element));
+    this.buffer.fill({ attr: { bgColor: 'black' }});
+    this.yPos = 1;
+    lines.forEach((element) => this.drawLine(element));
 
-      var remainingHeight = this.buffer.height - this.yPos;
-      var xFullPos = Math.round(this.buffer.width * intoZone);
-      this.buffer.fill( 
-        { attr: { bgColor: zoneColor } , 
-          region: { x: 1 , y: this.yPos , width: xFullPos, height: remainingHeight } } ) ;
-    
+    var remainingHeight = this.buffer.height - this.yPos;
+    var xFullPos = Math.round(this.buffer.width * intoZone);
+    this.buffer.fill( 
+      { attr: { bgColor: zoneColor } , 
+        region: { x: 1 , y: this.yPos , width: xFullPos, height: remainingHeight } } ) ;
+        
+    if (!DEBUG) {
       this.buffer.draw();
+    } else{
+      console.log(`remaining Height: ${remainingHeight}`);
+      console.log(`yPos: ${this.yPos}`)
+      console.log(`xFullPos: ${xFullPos}`)
     }
 
     // adds a callback to draw things
@@ -124,9 +126,15 @@ export class TextClient {
   }
 
   drawLine(line) {
+    if (DEBUG) {
+      console.log(line);
+    }
     this.xPos = 1;
-    for (let i = 0; i < line.length; ++i) {
+    for (let i = 0; i < line.length; i++) {
       var character = line.charAt(i);
+      if (DEBUG) {
+        console.log(`getting char: '${character}'`);
+      }
       var characterSprite = this.sprites[character];
       if (characterSprite) {
         var characterSprite = this.sprites[character];
