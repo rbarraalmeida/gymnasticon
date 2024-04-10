@@ -75,18 +75,25 @@ export class TextClient {
     lines.forEach((element) => this.drawLine(element));
 
     var zoneColor = 'purple';
+    var intoZone = 1.0;
     if (power_perc <= 55) {
       zoneColor = 'gray';
+      intoZone = power_perc/55;
     } else if (power_perc <= 75) {
       zoneColor = 'blue';
+      intoZone = (power_perc - 55)/(75 - 55);
     } else if (power_perc <= 89) {
       zoneColor = 'green';
+      intoZone = (power_perc - 75)/(89 - 75);
     } else if (power_perc <= 105) {
       zoneColor = 'yellow';
-    } else if (power_perc <= 105) {
+      intoZone = (power_perc - 89)/(105 - 89);
+    } else if (power_perc <= 120) {
       zoneColor = 'orange';
-    } else if (power_perc <= 125) {
+      intoZone = (power_perc - 105)/(120 - 105);
+    } else if (power_perc <= 150) {
       zoneColor = 'red';
+      intoZone = (power_perc - 120)/(150 - 120);
     }
     var remainingHeight = this.buffer.height - this.yPos;
     this.buffer.fill( 
