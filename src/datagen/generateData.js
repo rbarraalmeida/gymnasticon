@@ -27,7 +27,7 @@ var screen = new ScreenBuffer( {
     y: 2,
     x: 2
 });
-screen.fill({attr:{ color: 'white' , bgColor: 'cyan'}}) 
+screen.fill({attr:{ color: 'pink' , bgColor: 'cyan'}}) 
 numbers.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
 letters.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
  
