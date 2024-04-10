@@ -11,6 +11,17 @@ var characters = ['0', '1', '2', '3',
     'A', 'C', 'D', 'E', 'L', 'P', 
     'R', 'T', 'V'];
 
+characters.forEach((character) => generateCharacter(character));
+
+generateCharacter(character) {
+  var inputFilename = character + ".txt";
+  var outputFilename = character + ".sbuf";
+
+  var characterSprite = new ScreenBuffer(
+    width: 4,
+    height: 6;
+
+}
 sprites.background = new ScreenBuffer( {
 		width: viewport.width * 4 ,
 		height: viewport.height ,
