@@ -72,10 +72,10 @@ export class TextClient {
   draw() {
     var lines = [];
     var power_perc = Math.round((this.power * 1000.0) / this.riderFtp)/10;
-    lines.push(`${CADENCE_LABEL}    ${this.pad(this.cadence, 3)}`);
-    lines.push(`${SPEED_LABEL}   ${this.pad(this.speed, 4)}`);
-    lines.push(`${POWER_LABEL}    ${this.pad(this.power, 3)}`);
-    lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 3)}`);
+    lines.push(`${CADENCE_LABEL}      ${this.pad(this.cadence, 3)}`);
+    lines.push(`${SPEED_LABEL}     ${this.pad(this.speed, 4)}`);
+    lines.push(`${POWER_LABEL}      ${this.pad(this.power, 3)}`);
+    lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 5)}`);
 
     this.buffer.fill({ attr: { bgColor: 'black' }});
     this.yPos = 1;
