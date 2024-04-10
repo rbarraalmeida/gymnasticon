@@ -19,7 +19,6 @@ var letters = ['A', 'C', 'D', 'E', 'L', 'P',
     'R', 'T', 'V'];
 
 terminal.clear();
-terminal.fill( { attr: { color: 'white' , bgColor: 'black' } } ) ;
 numbers.forEach((element)=> generateCharacter(element, RED_IN_BLACK));
 letters.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
  
