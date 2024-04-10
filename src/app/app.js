@@ -183,6 +183,7 @@ export class App {
     this.statsTimeout.reset();
     this.power = power;
     this.cadence = cadence;
+    this.speed = speed;
     this.crankSimulation.cadence = cadence;
     this.wheelSimulation.speed = speed;
     let {crank, wheel} = this;

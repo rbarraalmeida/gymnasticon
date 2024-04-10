@@ -31,8 +31,12 @@ export class TextClient {
     this.power = power;
   }
 
+  /**
+   * Logs information
+   */
+
   draw() {
-    console.log(`speed ${this.speed} cadence ${this.cadence} power ${this.power} FTP ${this.ftp}`);
+    console.log(`speed ${this.speed} cadence ${this.cadence} power ${this.power} FTP ${this.riderFpt}`);
 
     // adds a callback to draw things
     var _this = this;
