@@ -8,10 +8,10 @@ const POWER_PERC_LABEL = "POR";
 export class TextClient {
   /**
    * Create a TextClient instance.
-   * @param {number} riderFpt - the ftp for the rider
+   * @param {number} riderFtp - the ftp for the rider
    */
-  constructor(riderFpt) {
-    this.riderFpt = riderFpt;
+  constructor(riderFtp) {
+    this.riderFtp = riderFtp;
     this.cadence = 0;
     this.speed = 0;
     this.power = 0;
@@ -41,7 +41,7 @@ export class TextClient {
 
   draw() {
     var lines = [];
-    var power_perc = ((this.power * 100) / this.riderFpt).toFixed(0);
+    var power_perc = ((this.power * 100) / this.riderFtp).toFixed(0);
     lines.push(`${CADENCE_LABEL}    ${this.cadence}`);
     lines.push(`${SPEED_LABEL}   ${this.speed}`);
     lines.push(`${POWER_LABEL}    ${this.power}`);
