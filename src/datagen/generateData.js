@@ -9,7 +9,8 @@ const WHITE_IN_BLACK = { attr: { color: 'white' , bgColor: 'black' },
                          transparencyChar: '#'};
 const RED_IN_BLACK = { attr: { color: 'red' , bgColor: 'black' },
                        transparencyChar: '#'};
-const DIR = 'src/datagen/data/';
+const INPUT_DIR = 'src/datagen/data/';
+const OUTPUT_DIR = 'lib/datagen/data/';
 
 var xPos = 1;
 var yPos = 1;
@@ -34,8 +35,8 @@ buffer.draw() ;
 term( '\n' ) ;
 
 function generateCharacter(element, color) {
-  var inputFilename = DIR + element + ".txt";
-  var outputFilename = DIR + element + ".sbuf";
+  var inputFilename = INPUT_DIR + element + ".txt";
+  var outputFilename = OUTPUT_DIR + element + ".sbuf";
 
   var characterSprite = termkit.ScreenBuffer.createFromChars(color, fs.readFileSync(inputFilename));
   characterSprite.saveSync(outputFilename);

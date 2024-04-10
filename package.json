@@ -10,7 +10,7 @@
   },
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "babel --delete-dir-on-start src -d lib",
+    "build": "babel --delete-dir-on-start src -d lib;./lib/datagen/generateData.js",
     "test": "tape lib/test/**/*.js"
   },
   "files": [
