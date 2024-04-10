@@ -26,13 +26,13 @@ function generateCharacter(element, color) {
   var inputFilename = DIR + element + ".txt";
   var outputFilename = DIR + element + ".sbuf";
 
-  var characterSprite = new ScreenBuffer({
-    width: 4,
-    height: 6,
-    noFill: true});
+  //var characterSprite = new ScreenBuffer({
+  //  width: 4,
+  //  height: 6,
+  //  noFill: true});
 
-  characterSprite.createFromChars(color, fs.readFileSync(inputFilename));
-  characterSprite.saveSyncV2(outputFilename);
+  var characterSprite = ScreenBuffer.createFromChars(color, fs.readFileSync(inputFilename));
+  characterSprite.saveSync(outputFilename);
   
   console.log(`saved ${element}`);
   characterSprite.draw({dst: terminal});
