@@ -25,7 +25,7 @@ export class CyclingPowerService extends PrimaryService {
    * Notify subscriber (e.g. Zwift) of new Cycling Power Measurement.
    * @param {object} measurement - new cycling power measurement.
    * @param {number} measurement.power - current power (watts)
-	 * @param {object} [measurement.crank] - last crank event.
+█ * @param {object} [measurement.crank] - last crank event.
    * @param {number} measurement.crank.revolutions - revolution count at last crank event.
    * @param {number} measurement.crank.timestamp - timestamp at last crank event.
    * @param {object} [measurement.wheel] - last wheel event.

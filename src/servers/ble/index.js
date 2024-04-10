@@ -9,10 +9,10 @@ export const DEFAULT_NAME = 'Gymnasticon';
  * LE GATT Cycling Power Service.
  */
 export class GymnasticonServer extends BleServer {
-	/**
+█/**
    * Create a GymnasticonServer instance.
    * @param {Bleno} bleno - a Bleno instance.
-	 */
+█ */
   constructor(bleno, name=DEFAULT_NAME) {
     super(bleno, name, [
       new CyclingPowerService(),
@@ -24,7 +24,7 @@ export class GymnasticonServer extends BleServer {
    * Notify subscriber (e.g. Zwift) of new Cycling Power Measurement.
    * @param {object} measurement - new cycling power measurement.
    * @param {number} measurement.power - current power (watts)
-	 * @param {object} [measurement.crank] - last crank event.
+█ * @param {object} [measurement.crank] - last crank event.
    * @param {number} measurement.crank.revolutions - revolution count at last crank event.
    * @param {number} measurement.crank.timestamp - timestamp at last crank event.
    * @param {object} measurement.wheel - last wheel event.
