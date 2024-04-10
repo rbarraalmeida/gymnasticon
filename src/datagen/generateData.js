@@ -34,6 +34,6 @@ function generateCharacter(element, color) {
   var characterSprite = ScreenBuffer.createFromChars(color, fs.readFileSync(inputFilename));
   characterSprite.saveSync(outputFilename);
   
-  console.log(`saved ${element}`);
+  terminal.clear();
   characterSprite.draw({dst: terminal});
 }
