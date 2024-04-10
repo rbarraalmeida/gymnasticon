@@ -103,8 +103,7 @@ export class TextClient {
     console.log(`zonecolor: ${zoneColor}`);
     console.log(`intoZone: ${intoZone}`);
 
-    return;
-
+    if (false){
     this.buffer.fill({ attr: { bgColor: 'black' }});
     this.yPos = 1;
     lines.forEach((element) => this.drawLine(element));
@@ -119,6 +118,8 @@ export class TextClient {
     //    region: { x: xFullPos + 1 , y: this.yPos , width: this.buffer.width, height: remainingHeight } } ) ;
     
     this.buffer.draw();
+    }
+    
     // adds a callback to draw things
     var _this = this;
     setTimeout(function() { _this.draw(); }, 50);
