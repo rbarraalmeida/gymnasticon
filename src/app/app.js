@@ -91,7 +91,7 @@ export class App {
     }
 
     this.opts = opts;
-    this.ui = new TextClient(opts.bikerFtp);
+    this.ui = new TextClient(opts.riderFtp);
     this.logger = new Logger();
     this.crankSimulation = new CrankSimulation();
     this.wheelSimulation = new WheelSimulation();
