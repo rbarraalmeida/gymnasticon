@@ -8,7 +8,7 @@ const SPRITE_DIR = "/home/pi/gymnasticon/lib/datagen/data/";
 const CHARACTERS = ['0', '1', '2', '3', 
     '4', '5', '6', '7', '8', '9', '.',
     'A', 'C', 'D', 'E', 'L', 'P', 
-    'R', 'T', 'V'];
+    'R', 'T', 'V', 'O'];
 
 const termkit = require('terminal-kit');
 
