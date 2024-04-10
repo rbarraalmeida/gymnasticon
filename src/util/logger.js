@@ -11,11 +11,11 @@ export class Logger {
   }
 
   error(...args) {
-    //return this._cons.error(this.prefix, ...args);
+    return this._cons.error(this.prefix, ...args);
   }
 
   get prefix() {
     const time = new Date().toISOString();
-    //return `[${time}]`;
+    return `[${time}]`;
   }
 }
