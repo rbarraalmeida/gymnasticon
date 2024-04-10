@@ -18,10 +18,11 @@ var numbers = ['0', '1', '2', '3',
 var letters = ['A', 'C', 'D', 'E', 'L', 'P', 
     'R', 'T', 'V'];
 
+terminal.clear();
+terminal.fill( { attr: { color: 'white' , bgColor: 'black' } } ) ;
 numbers.forEach((element)=> generateCharacter(element, RED_IN_BLACK));
 letters.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
-
-
+ 
 function generateCharacter(element, color) {
   var inputFilename = DIR + element + ".txt";
   var outputFilename = DIR + element + ".sbuf";
@@ -34,6 +35,5 @@ function generateCharacter(element, color) {
   var characterSprite = ScreenBuffer.createFromChars(color, fs.readFileSync(inputFilename));
   characterSprite.saveSync(outputFilename);
   
-  terminal.clear();
   characterSprite.draw({dst: terminal});
 }
