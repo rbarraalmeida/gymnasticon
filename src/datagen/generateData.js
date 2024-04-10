@@ -22,8 +22,8 @@ terminal.fullscreen();
 terminal.hideCursor();
 var screen = new ScreenBuffer( {
     dst: terminal,
-    width: Math.min(terminal.width - 2),
-    height: Math.min(terminal.height -2 ),
+    width: Math.min(terminal.width - 2, 40),
+    height: Math.min(terminal.height -2, 40),
     y: 2,
     x: 2
 });
