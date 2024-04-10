@@ -37,7 +37,7 @@ export class TextClient {
         width: Math.max(this.term.width - 1, 40), 
         height: Math.max(this.term.height -1, 40)}) ;
 
-    CHARACTERS.forEach((element) => loadSprite(element));
+    CHARACTERS.forEach((element) => this.loadSprite(element));
 
     this.draw();
   }
@@ -73,6 +73,21 @@ export class TextClient {
     this.buffer.fill({ attr: { bgColor: 'black' }});
     this.yPos = 1;
     lines.forEach((element) => drawLine(element));
+
+    var zoneColor = 'purple';
+    if (power_perc <= 55) {
+      zoneColor = 'gray';
+    } else if (power_perc <= 75) {
+      zoneColor = 'blue';
+    } else if (power_perc <= 89) {
+      zoneColor = 'green';
+    } else if (power_perc <= 105) {
+      zoneColor = 'yellow';
+    } else if (power_perc <= 105) {
+      zoneColor = 'orange';
+    } else if (power_perc <= 125) {
+      zoneColor = 'red';
+    }
     
     this.buffer.draw();
     // adds a callback to draw things
