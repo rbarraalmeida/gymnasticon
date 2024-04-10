@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-const WHITE_IN_BLACK = { attr: { color: 'white' , bgColor: 'black' },
+const WHITE_IN_BLACK = { attr: { color: 'white' , bgColor: 'green' },
                          transparencyChar: '#'};
-const RED_IN_BLACK = { attr: { color: 'red' , bgColor: 'black' },
+const RED_IN_BLACK = { attr: { color: 'red' , bgColor: 'green' },
                        transparencyChar: '#'};
 const DIR = 'src/datagen/data/'
 
