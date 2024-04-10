@@ -11,6 +11,7 @@ const CHARACTERS = ['0', '1', '2', '3',
     'R', 'T', 'V', 'O'];
 
 const termkit = require('terminal-kit');
+const DEBUG = false;
 
 export class TextClient {
   /**
@@ -99,27 +100,24 @@ export class TextClient {
     lines.push(`${POWER_LABEL}      ${this.pad(this.power, 3)}`);
     lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 5)}`);
 
-    lines.forEach((element) => console.log(element));
-    console.log(`zonecolor: ${zoneColor}`);
-    console.log(`intoZone: ${intoZone}`);
+    if (DEBUG) {
+      lines.forEach((element) => console.log(element));
+      console.log(`zonecolor: ${zoneColor}`);
+      console.log(`intoZone: ${intoZone}`);
+    } else {
+      this.buffer.fill({ attr: { bgColor: 'black' }});
+      this.yPos = 1;
+      lines.forEach((element) => this.drawLine(element));
 
-    if (false){
-    this.buffer.fill({ attr: { bgColor: 'black' }});
-    this.yPos = 1;
-    lines.forEach((element) => this.drawLine(element));
-
-    var remainingHeight = this.buffer.height - this.yPos;
-    var xFullPos = Math.round(this.buffer.width * intoZone);
-    this.buffer.fill( 
-      { attr: { bgColor: zoneColor } , 
-        region: { x: 1 , y: this.yPos , width: xFullPos, height: remainingHeight } } ) ;
-    //this.buffer.fill( 
-    //  { attr: { bgColor: 'light'+zoneColor } , 
-    //    region: { x: xFullPos + 1 , y: this.yPos , width: this.buffer.width, height: remainingHeight } } ) ;
+      var remainingHeight = this.buffer.height - this.yPos;
+      var xFullPos = Math.round(this.buffer.width * intoZone);
+      this.buffer.fill( 
+        { attr: { bgColor: zoneColor } , 
+          region: { x: 1 , y: this.yPos , width: xFullPos, height: remainingHeight } } ) ;
     
-    this.buffer.draw();
+      this.buffer.draw();
     }
-    
+
     // adds a callback to draw things
     var _this = this;
     setTimeout(function() { _this.draw(); }, 50);
