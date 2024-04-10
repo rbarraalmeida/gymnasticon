@@ -27,7 +27,7 @@ var buffer = new termkit.ScreenBuffer( { dst: term ,
     height: Math.max(term.height -1, 40) } ) ;
 buffer.fill( { attr: { bgColor: 'cyan' } } ) ;
 buffer.fill( { attr: { bgColor: 'brightMagenta' } , region: { x: 3 , y: 2 , width: 3 , height: 3 } } ) ;
-numbers.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
+numbers.forEach((element)=> generateCharacter(element, RED_IN_BLACK));
 letters.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
 buffer.draw() ;
 
