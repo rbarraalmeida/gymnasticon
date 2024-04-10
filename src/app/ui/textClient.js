@@ -4,7 +4,7 @@ const CADENCE_LABEL = "CAD";
 const SPEED_LABEL = "VEL";
 const POWER_LABEL = "POT";
 const POWER_PERC_LABEL = "POR";
-
+const SPRITE_DIR = "/home/pi/gymnasticon/lib/datagen/data/";
 const CHARACTERS = ['0', '1', '2', '3', 
     '4', '5', '6', '7', '8', '9', '.',
     'A', 'C', 'D', 'E', 'L', 'P', 
@@ -82,6 +82,20 @@ export class TextClient {
 
   drawLine(line) {
     this.xPos = 1;
+    line.forEach((character) => {
+      if (this.sprites.has(character)) {
+        var characterSprite = this.sprites[character];
+        characterSprite.draw({
+          dst: this.buffer,
+          x: this.xPos;
+          y: this.yPos;
+        });
+        this.xPos += characterSprite.width;
+      } else {
+        this.xPos += this.sprites['A'].width;
+      }
+    });
+    this.yPos += this.sprites['A'].height;
   }
 }
 
