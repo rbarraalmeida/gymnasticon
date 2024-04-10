@@ -6,7 +6,6 @@ const WHITE_IN_BLACK = { attr: { color: 'white' , bgColor: 'green' },
 const RED_IN_BLACK = { attr: { color: 'red' , bgColor: 'green' },
                        transparencyChar: '#'};
 const DIR = 'src/datagen/data/'
-const Promise = require( 'seventh' ) ;
 
 var fs = require('fs');
 var ScreenBuffer = require('terminal-kit').ScreenBuffer;
@@ -25,7 +24,7 @@ terminal.clear();
 numbers.forEach((element)=> generateCharacter(element, RED_IN_BLACK));
 letters.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
  
-async function generateCharacter(element, color) {
+function generateCharacter(element, color) {
   var inputFilename = DIR + element + ".txt";
   var outputFilename = DIR + element + ".sbuf";
 
@@ -38,5 +37,5 @@ async function generateCharacter(element, color) {
   characterSprite.saveSync(outputFilename);
   
   characterSprite.draw({dst: terminal});
-  await Promise.resolveTimeout( 500 ) ;
+  sleep(10000);
 }
