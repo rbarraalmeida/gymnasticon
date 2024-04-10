@@ -18,18 +18,18 @@ var numbers = ['0', '1', '2', '3',
 var letters = ['A', 'C', 'D', 'E', 'L', 'P', 
     'R', 'T', 'V'];
 
-terminal.fullscreen();
-terminal.hideCursor();
+//terminal.fullscreen();
+//terminal.hideCursor();
 var screen = new ScreenBuffer( {
     dst: terminal,
-    width: Math.min(terminal.width - 2, 40),
-    height: Math.min(terminal.height -2, 40),
-    y: 2,
-    x: 2
+    width: 8, //Math.min(terminal.width - 2, 40),
+    height: 8, //Math.min(terminal.height -2, 40),
+    //y: 2,
+    //x: 2
 });
-screen.fill({attr:{ color: 'pink' , bgColor: 'cyan'}}) 
-numbers.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
-letters.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
+screen.fill({attr:{ color: 'pink' , bgColor: 'cyan'}}); 
+//numbers.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
+//letters.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
  
 var xPos = 1;
 var yPos = 1;
