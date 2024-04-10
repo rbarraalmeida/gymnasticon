@@ -41,13 +41,14 @@ export class TextClient {
 
   draw() {
     var lines = [];
-    var power_perc = ((this.power * 100) / this.riderFtp).toFixed(0);
+    var power_perc = Math.round((this.power * 1000) / ths.riderFtp)/10;
     lines.push(`${CADENCE_LABEL}    ${this.cadence}`);
     lines.push(`${SPEED_LABEL}   ${this.speed}`);
     lines.push(`${POWER_LABEL}    ${this.power}`);
+    lines.push(`${POWER_PERC_LABEL}    ${this.power.toFixed(0)}`);
 
     console.log("\n\n\n\nStarting to draw");
-    lines.forEach((element) => console.log(`${element}\n`));
+    lines.forEach((element) => console.log(`${element}`));
 
     // adds a callback to draw things
     var _this = this;
