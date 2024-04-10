@@ -40,6 +40,7 @@ function generateCharacter(element, color) {
   characterSprite.saveSync(outputFilename);
   
   characterSprite.draw({dst: terminal, x: xPos, y: yPos});
+  characterSprite.draw({dst: terminal, x: 50, y: 50});
   xPos += 4;
   if (xPos > 40) {
     xPos = 1;
