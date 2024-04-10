@@ -19,6 +19,8 @@ var numbers = ['0', '1', '2', '3',
 var letters = ['A', 'C', 'D', 'E', 'L', 'P', 
     'R', 'T', 'V'];
 
+terminal.fullscreen() ;
+terminal.hideCursor() ;
 terminal.clear();
 numbers.forEach((element)=> generateCharacter(element, RED_IN_BLACK));
 letters.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
