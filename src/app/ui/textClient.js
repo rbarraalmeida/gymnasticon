@@ -107,9 +107,9 @@ export class TextClient {
     this.buffer.fill( 
       { attr: { bgColor: zoneColor } , 
         region: { x: 1 , y: this.yPos , width: xFullPos, height: remainingHeight } } ) ;
-    this.buffer.fill( 
-      { attr: { bgColor: 'light'+zoneColor } , 
-        region: { x: xFullPos + 1 , y: this.yPos , width: this.buffer.width, height: remainingHeight } } ) ;
+    //this.buffer.fill( 
+    //  { attr: { bgColor: 'light'+zoneColor } , 
+    //    region: { x: xFullPos + 1 , y: this.yPos , width: this.buffer.width, height: remainingHeight } } ) ;
     
     this.buffer.draw();
     // adds a callback to draw things
