@@ -8,8 +8,8 @@ const term = termkit.terminal;
 term.fullscreen();
 term.hideCursor();
 var buffer = new termkit.ScreenBuffer( { dst: term , 
-    width: Math.max(terminal.width - 2, 40), 
-    height: Math.max(terminal.height -2, 40) } ) ;
+    width: Math.max(term.width - 2, 40), 
+    height: Math.max(term.height -2, 40) } ) ;
 buffer.fill( { attr: { bgColor: 'cyan' } } ) ;
 buffer.fill( { attr: { bgColor: 'brightMagenta' } , region: { x: 3 , y: 2 , width: 3 , height: 3 } } ) ;
 buffer.draw() ;
