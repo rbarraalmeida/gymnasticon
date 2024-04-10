@@ -72,7 +72,7 @@ export class TextClient {
 
     this.buffer.fill({ attr: { bgColor: 'black' }});
     this.yPos = 1;
-    lines.forEach((element) => drawLine(element));
+    lines.forEach((element) => this.drawLine(element));
 
     var zoneColor = 'purple';
     if (power_perc <= 55) {
