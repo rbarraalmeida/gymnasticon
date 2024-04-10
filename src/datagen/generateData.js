@@ -8,15 +8,13 @@ const term = termkit.terminal;
 term.fullscreen();
 term.hideCursor();
 var buffer = new termkit.ScreenBuffer( { dst: term , 
-    width: Math.min(terminal.width - 2, 40), 
-    height: Math.min(terminal.height -2, 40) } ) ;
+    width: Math.max(terminal.width - 2, 40), 
+    height: Math.max(terminal.height -2, 40) } ) ;
 buffer.fill( { attr: { bgColor: 'cyan' } } ) ;
 buffer.fill( { attr: { bgColor: 'brightMagenta' } , region: { x: 3 , y: 2 , width: 3 , height: 3 } } ) ;
 buffer.draw() ;
 
 term( '\n' ) ;
-
-exit(0);
 
 //const WHITE_IN_BLACK = { attr: { color: 'white' , bgColor: 'black' },
 //                         transparencyChar: '#'};
