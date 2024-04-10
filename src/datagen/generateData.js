@@ -38,9 +38,10 @@ function generateCharacter(element, color) {
 
   var characterSprite = ScreenBuffer.createFromChars(color, fs.readFileSync(inputFilename));
   characterSprite.saveSync(outputFilename);
-  
-  characterSprite.draw({dst: terminal, x: xPos, y: yPos});
-  characterSprite.draw({dst: terminal, x: 50, y: 50});
+  characterSprite.x = xPos;
+  characterSprite.y = yPos;
+  characterSprite.draw({dst: terminal});
+  characterSprite.draw({dst: terminal});
   xPos += 4;
   if (xPos > 40) {
     xPos = 1;
