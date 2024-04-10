@@ -37,7 +37,7 @@ function generateCharacter(element, color) {
   var inputFilename = DIR + element + ".txt";
   var outputFilename = DIR + element + ".sbuf";
 
-  var characterSprite = ScreenBuffer.createFromChars(color, fs.readFileSync(inputFilename));
+  var characterSprite = termkit.ScreenBuffer.createFromChars(color, fs.readFileSync(inputFilename));
   characterSprite.saveSync(outputFilename);
   characterSprite.x = xPos;
   characterSprite.y = yPos;
