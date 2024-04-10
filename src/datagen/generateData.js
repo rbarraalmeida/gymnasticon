@@ -35,4 +35,5 @@ function generateCharacter(element, color) {
   characterSprite.saveSync(outputFilename);
   
   characterSprite.draw({dst: terminal});
+  setMaxIdleHTTPParsers(10);
 }
