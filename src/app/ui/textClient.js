@@ -59,7 +59,7 @@ export class TextClient {
     this.power = power;
   }
 
-  function pad(num, size) {
+  pad(num, size) {
     num = num.toString();
     while (num.length < size) num = " " + num;
     return num;
