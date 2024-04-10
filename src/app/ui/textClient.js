@@ -88,7 +88,11 @@ export class TextClient {
     } else if (power_perc <= 125) {
       zoneColor = 'red';
     }
-    
+    var remainingHeight = this.buffer.height - this.yPos;
+    this.buffer.fill( 
+      { attr: { bgColor: zoneColor } , 
+        region: { x: 1 , y: this.yPos , width: this.buffer.width, height: remainingHeight } } ) ;
+
     this.buffer.draw();
     // adds a callback to draw things
     var _this = this;
