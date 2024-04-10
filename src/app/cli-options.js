@@ -112,5 +112,10 @@ export const options = {
     describe: '<value> add this value to speed',
     type: 'number',
     default: defaults.speedOffset,
+  },
+  'rider-ftp': {
+    describe: '<value> ftp for rider',
+    type: 'number',
+    default: defaults.riderFtp,
   }
 };
