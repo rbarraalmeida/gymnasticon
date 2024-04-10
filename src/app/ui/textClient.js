@@ -96,10 +96,14 @@ export class TextClient {
       intoZone = (power_perc - 120)/(150 - 120);
     }
     var remainingHeight = this.buffer.height - this.yPos;
+    var xFullPos = Math.round(this.buffer.width * intoZone);
     this.buffer.fill( 
       { attr: { bgColor: zoneColor } , 
-        region: { x: 1 , y: this.yPos , width: this.buffer.width, height: remainingHeight } } ) ;
-
+        region: { x: 1 , y: this.yPos , width: xFullPos, height: remainingHeight } } ) ;
+    this.buffer.fill( 
+      { attr: { bgColor: 'light'+zoneColor } , 
+        region: { x: xFullPos + 1 , y: this.yPos , width: this.buffer.width, height: remainingHeight } } ) ;
+    
     this.buffer.draw();
     // adds a callback to draw things
     var _this = this;
