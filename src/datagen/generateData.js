@@ -18,10 +18,17 @@ var numbers = ['0', '1', '2', '3',
 var letters = ['A', 'C', 'D', 'E', 'L', 'P', 
     'R', 'T', 'V'];
 
-terminal.fullscreen() ;
-terminal.hideCursor() ;
-terminal.clear();
-numbers.forEach((element)=> generateCharacter(element, RED_IN_BLACK));
+terminal.fullscreen();
+terminal.hideCursor();
+var screen = new ScreenBuffer( {
+    dst: terminal,
+    width: Math.min(terminal.width - 2),
+    height: Math.min(terminal.height -2 ),
+    y: 2,
+    x: 2
+});
+screen.fill({attr:{ color: 'white' , bgColor: 'black'}}) 
+numbers.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
 letters.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
  
 var xPos = 1;
@@ -31,17 +38,11 @@ function generateCharacter(element, color) {
   var inputFilename = DIR + element + ".txt";
   var outputFilename = DIR + element + ".sbuf";
 
-  //var characterSprite = new ScreenBuffer({
-  //  width: 4,
-  //  height: 6,
-  //  noFill: true});
-
   var characterSprite = ScreenBuffer.createFromChars(color, fs.readFileSync(inputFilename));
   characterSprite.saveSync(outputFilename);
   characterSprite.x = xPos;
   characterSprite.y = yPos;
-  characterSprite.draw({dst: terminal});
-  characterSprite.draw({dst: terminal});
+  characterSprite.draw({dst: screen});
   xPos += 4;
   if (xPos > 40) {
     xPos = 1;
