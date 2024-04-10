@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-const WHITE_IN_BLACK = { attr: { color: 'white' , bgColor: 'green' },
+const WHITE_IN_BLACK = { attr: { color: 'white' , bgColor: 'black' },
                          transparencyChar: '#'};
-const RED_IN_BLACK = { attr: { color: 'red' , bgColor: 'green' },
+const RED_IN_BLACK = { attr: { color: 'red' , bgColor: 'black' },
                        transparencyChar: '#'};
 const DIR = 'src/datagen/data/'
 
@@ -24,6 +24,9 @@ terminal.clear();
 numbers.forEach((element)=> generateCharacter(element, RED_IN_BLACK));
 letters.forEach((element)=> generateCharacter(element, WHITE_IN_BLACK));
  
+var xPos = 1;
+var yPos = 1;
+
 function generateCharacter(element, color) {
   var inputFilename = DIR + element + ".txt";
   var outputFilename = DIR + element + ".sbuf";
@@ -36,5 +39,10 @@ function generateCharacter(element, color) {
   var characterSprite = ScreenBuffer.createFromChars(color, fs.readFileSync(inputFilename));
   characterSprite.saveSync(outputFilename);
   
-  characterSprite.draw({dst: terminal});
+  characterSprite.draw({dst: terminal, x: xPos, y: yPos});
+  xPos += 4;
+  if (xPos > 40) {
+    xPos = 1;
+    yPos += 7;
+  }
 }
