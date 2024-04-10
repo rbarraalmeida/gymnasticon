@@ -59,16 +59,23 @@ export class TextClient {
     this.power = power;
   }
 
+  function pad(num, size) {
+    num = num.toString();
+    while (num.length < size) num = " " + num;
+    return num;
+  }
+
+
   /**
    * Draws the UI.
    */
   draw() {
     var lines = [];
     var power_perc = Math.round((this.power * 1000.0) / this.riderFtp)/10;
-    lines.push(`${CADENCE_LABEL}    ${this.cadence}`);
-    lines.push(`${SPEED_LABEL}   ${this.speed}`);
-    lines.push(`${POWER_LABEL}    ${this.power}`);
-    lines.push(`${POWER_PERC_LABEL}    ${power_perc.toFixed(0)}`);
+    lines.push(`${CADENCE_LABEL}    ${this.pad(this.cadence, 3)}`);
+    lines.push(`${SPEED_LABEL}   ${this.pad(this.speed, 4)}`);
+    lines.push(`${POWER_LABEL}    ${this.pad(this.power, 3)}`);
+    lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 3)}`);
 
     this.buffer.fill({ attr: { bgColor: 'black' }});
     this.yPos = 1;
