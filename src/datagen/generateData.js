@@ -41,7 +41,7 @@ function generateCharacter(element, color) {
   characterSprite.saveSync(outputFilename);
   characterSprite.x = xPos;
   characterSprite.y = yPos;
-  characterSprite.draw({dst: screen});
+  characterSprite.draw({dst: buffer});
   xPos += 4;
   if (xPos > 40) {
     xPos = 1;
