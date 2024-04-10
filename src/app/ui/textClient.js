@@ -87,8 +87,8 @@ export class TextClient {
         var characterSprite = this.sprites[character];
         characterSprite.draw({
           dst: this.buffer,
-          x: this.xPos;
-          y: this.yPos;
+          x: this.xPos,
+          y: this.yPos,
         });
         this.xPos += characterSprite.width;
       } else {
