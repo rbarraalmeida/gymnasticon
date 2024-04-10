@@ -114,7 +114,7 @@ export class TextClient {
       } else {
         this.xPos += this.sprites['A'].width;
       }
-    });
+    }
     this.yPos += this.sprites['A'].height;
   }
 }
