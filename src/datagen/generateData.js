@@ -8,7 +8,8 @@ const RED_IN_BLACK = { attr: { color: 'red' , bgColor: 'black' },
 const DIR = 'src/datagen/data/'
 
 var fs = require('fs');
-var termkit = require('termkit');
+var termkit = require('terminal-kit').termkit;
+var terminal = require('terminal-kit').terminal;
 var term;
 var ScreenBuffer = termkit.ScreenBuffer;
 
@@ -33,4 +34,7 @@ function generateCharacter(element, color) {
 
   characterSprite.createFromChars(color, fs.readFileSync(inputFilename));
   characterSprite.saveSyncV2(outputFilename);
+  
+  console.log(`saved ${element}`);
+  characterSprite.draw({dst: terminal});
 }
