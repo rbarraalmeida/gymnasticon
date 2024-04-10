@@ -77,6 +77,10 @@ export class TextClient {
     lines.push(`${POWER_LABEL}      ${this.pad(this.power, 3)}`);
     lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 5)}`);
 
+    lines.forEach((element) => console.log(element));
+
+    return;
+    
     this.buffer.fill({ attr: { bgColor: 'black' }});
     this.yPos = 1;
     lines.forEach((element) => this.drawLine(element));
