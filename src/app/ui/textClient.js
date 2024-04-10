@@ -72,19 +72,6 @@ export class TextClient {
   draw() {
     var lines = [];
     var power_perc = Math.round((this.power * 1000.0) / this.riderFtp)/10;
-    lines.push(`${CADENCE_LABEL}      ${this.pad(this.cadence, 3)}`);
-    lines.push(`${SPEED_LABEL}     ${this.pad(this.speed, 4)}`);
-    lines.push(`${POWER_LABEL}      ${this.pad(this.power, 3)}`);
-    lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 5)}`);
-
-    lines.forEach((element) => console.log(element));
-
-    return;
-    
-    this.buffer.fill({ attr: { bgColor: 'black' }});
-    this.yPos = 1;
-    lines.forEach((element) => this.drawLine(element));
-
     var zoneColor = 'purple';
     var intoZone = 1.0;
     if (power_perc <= 55) {
@@ -106,6 +93,22 @@ export class TextClient {
       zoneColor = 'red';
       intoZone = (power_perc - 120)/(150 - 120);
     }
+
+    lines.push(`${CADENCE_LABEL}      ${this.pad(this.cadence, 3)}`);
+    lines.push(`${SPEED_LABEL}     ${this.pad(this.speed, 4)}`);
+    lines.push(`${POWER_LABEL}      ${this.pad(this.power, 3)}`);
+    lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 5)}`);
+
+    lines.forEach((element) => console.log(element));
+    console.log(`zonecolor: ${zoneColor}`);
+    console.log(`intoZone: ${intoZone}`);
+
+    return;
+
+    this.buffer.fill({ attr: { bgColor: 'black' }});
+    this.yPos = 1;
+    lines.forEach((element) => this.drawLine(element));
+
     var remainingHeight = this.buffer.height - this.yPos;
     var xFullPos = Math.round(this.buffer.width * intoZone);
     this.buffer.fill( 
