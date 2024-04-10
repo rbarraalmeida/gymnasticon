@@ -101,7 +101,8 @@ export class TextClient {
 
   drawLine(line) {
     this.xPos = 1;
-    line.forEach((character) => {
+    for (let i = 0; i < line.length; ++i) {
+      var character = line.charAt(i);
       if (this.sprites.has(character)) {
         var characterSprite = this.sprites[character];
         characterSprite.draw({
