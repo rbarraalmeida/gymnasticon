@@ -8,10 +8,9 @@ const RED_IN_BLACK = { attr: { color: 'red' , bgColor: 'black' },
 const DIR = 'src/datagen/data/'
 
 var fs = require('fs');
-var termkit = require('terminal-kit').termkit;
+var ScreenBuffer = require('terminal-kit').ScreenBuffer;
 var terminal = require('terminal-kit').terminal;
 var term;
-var ScreenBuffer = termkit.ScreenBuffer;
 
 var numbers = ['0', '1', '2', '3', 
     '4', '5', '6', '7', '8', '9', '.'];
