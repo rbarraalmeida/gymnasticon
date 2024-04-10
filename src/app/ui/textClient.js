@@ -110,7 +110,8 @@ export class TextClient {
     this.xPos = 1;
     for (let i = 0; i < line.length; ++i) {
       var character = line.charAt(i);
-      if (this.sprites.has(character)) {
+      var characterSprite = this.sprites[character];
+      if (characterSprite) {
         var characterSprite = this.sprites[character];
         characterSprite.draw({
           dst: this.buffer,
