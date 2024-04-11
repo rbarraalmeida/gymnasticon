@@ -95,7 +95,7 @@ function draw()
             { x: xPos++, attr: { bgColor: zone.lightBgColor, fgColor: zone.fgColor}} , `${zone.id}`); 
      
     });
-    var stats = viewport.draw( { delta: true } ) ;
+    //var stats = viewport.draw( { delta: true } ) ;
 	
 	
 	frames ++ ;
