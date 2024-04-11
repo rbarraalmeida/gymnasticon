@@ -61,7 +61,7 @@ function inputs( key )
  			break ;
 		case 'DOWN' :
         case 'LEFT' :
-            power = Math.max(0, perc - 5);
+            power = Math.max(0, power - 5);
  			break ;
  		case 'q':
 		case 'CTRL_C':
