@@ -50,7 +50,7 @@ export class ZoneBar {
   }
 
   draw(yPos) {
-    //console.log(`\n\n\ndrawing a new bar width:${this.buffer.width} height:${this.buffer.height}`);
+    console.log(`\n\n\ndrawing a new bar width:${this.buffer.width} height:${this.buffer.height}`);
     this.buffer.y = yPos;
     this.buffer.fill(
         { attr: { bgColor: 0, fgColor: 15},
@@ -74,10 +74,10 @@ export class ZoneBar {
    * @returns 
    */
   drawZone(buffer, zoneToDraw, xPos) {
-    //console.log(`\tdrawing zone: ${zoneToDraw.id} xPos: ${xPos}`);
+    console.log(`\tdrawing zone: ${zoneToDraw.id} xPos: ${xPos}`);
     var mainAttrForZone = { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor};
     if (zoneToDraw.id === this.zone.id) {
-        //console.log(`\t\tisCurrent`);
+        console.log(`\t\tisCurrent`);
         // current Zone
         var spaceForCurrentZone = buffer.width - (ZONES.length - 1) * ZONE_WIDTH;
         var finalDarkPos = Math.round(spaceForCurrentZone * this.intoZone); 
@@ -87,7 +87,7 @@ export class ZoneBar {
                         y: 0,
                         width: finalDarkPos,
                         height: CUR_ZONE_HEIGHT }}) ;
-        //console.log(`\t\t\tsolid x:${xPos} y:1 width: ${finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
+        console.log(`\t\t\tsolid x:${xPos} y:1 width: ${finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
         var lightAttrForZone = { bgColor: zoneToDraw.lightBgColor, fgColor: zoneToDraw.fgColor};
         buffer.fill( 
             { attr: lightAttrForZone,
@@ -95,7 +95,7 @@ export class ZoneBar {
                       y: 0, 
                       width: spaceForCurrentZone - finalDarkPos, 
                       height: CUR_ZONE_HEIGHT } } ) ;
-        //console.log(`\t\t\tlight x:${finalDarkPos + 1} y:1 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
+        console.log(`\t\t\tlight x:${finalDarkPos + 1} y:1 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
         return xPos + spaceForCurrentZone;
     }
     
@@ -113,7 +113,7 @@ export class ZoneBar {
                       y: CUR_ZONE_HEIGHT - zoneHeight, 
                       width: ZONE_WIDTH, 
                       height: zoneHeight}});
-    //console.log(`\t\t\tsolid x:${xPos} y:${CUR_ZONE_HEIGHT - zoneHeight + 1} width: ${ZONE_WIDTH} height: ${zoneHeight}`);
+    console.log(`\t\t\tsolid x:${xPos} y:${CUR_ZONE_HEIGHT - zoneHeight + 1} width: ${ZONE_WIDTH} height: ${zoneHeight}`);
     xPos += ZONE_WIDTH;
     return xPos;
   }
@@ -145,6 +145,6 @@ function getZone(power_perc) {
 function getIntoZone(zone, power_perc) {
     var length = zone.finish - zone.start;
     var soFar = power_perc - zone.start;
-    return Math.min(Math.max(0, soFar/length), 1);
+    return Math.min(Math.max(0, soFar/length), 1.0);
 }
   
