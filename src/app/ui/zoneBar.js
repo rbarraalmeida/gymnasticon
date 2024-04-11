@@ -91,11 +91,11 @@ export class ZoneBar {
         var lightAttrForZone = { bgColor: zoneToDraw.lightBgColor, fgColor: zoneToDraw.fgColor};
         buffer.fill( 
             { attr: lightAttrForZone,
-            region: { x: finalDarkPos , 
+            region: { x: xPos + finalDarkPos , 
                       y: 0, 
                       width: spaceForCurrentZone - finalDarkPos, 
                       height: CUR_ZONE_HEIGHT } } ) ;
-        //console.log(`\t\t\tlight x:${finalDarkPos} y:0 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
+        //console.log(`\t\t\tlight x:${xPos + finalDarkPos} y:0 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
         return xPos + spaceForCurrentZone;
     }
     
