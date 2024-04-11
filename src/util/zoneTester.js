@@ -20,15 +20,15 @@ function init( callback )
 		if ( error ) { throw new Error( 'Cannot detect terminal.' ) ; }
 		
 		term = detectedTerm ;
-        this.palette = new Palette();
-        this.palette.generate();
+        var palette = new Palette();
+        palette.generate();
     
 		viewport = new ScreenBuffer( {
 			dst: term ,
 			width: Math.min( term.width ) ,
 			height: Math.min( term.height) - 1,
             y: 2,
-            palette: this.palette,
+            palette: palette,
 		} ) ;
 				
 		term.fullscreen() ;
