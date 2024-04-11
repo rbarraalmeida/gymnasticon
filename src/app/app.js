@@ -61,7 +61,9 @@ export const defaults = {
   speedOffset: 0.0, // add this to speed
 
   // FTP
-  riderFtp: 209, // Rider's FTP in Watts.s
+  riderFtp: 209, // Rider's FTP in Watts.
+
+  logToFile: 0, // whether to log to file
 };
 
 /**
@@ -122,6 +124,21 @@ export class App {
   async run() {
     try {
 
+      if (this.opts.logToFile) {
+        var fs = require('fs');
+        var util = require('util');
+        var log_file = fs.createWriteStream('./debug.log', {flags : 'w'});
+      
+        console.log = function() { 
+          for (var i = 0; i < arguments.length; i++) {
+            log_file.write(util.format(arguments[i]));
+          }
+          log_file.write('\n');
+          
+        };      
+      } else {
+        console.log = function() {}
+      }
       this.ui.build();
 
       process.on('SIGINT', this.onSigInt);

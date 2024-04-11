@@ -24,17 +24,6 @@ const argv = yargs
   .argv;
 
 (async () => {
-  var fs = require('fs');
-  var util = require('util');
-  var log_file = fs.createWriteStream('./debug.log', {flags : 'w'});
-
-  console.log = function() { 
-    for (var i = 0; i < arguments.length; i++) {
-      log_file.write(util.format(arguments[i]));
-    }
-    log_file.write('\n');
-    
-  };
   const app = new App(argv);
   await app.run();
 })();

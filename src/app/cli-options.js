@@ -117,5 +117,10 @@ export const options = {
     describe: '<value> ftp for rider',
     type: 'number',
     default: defaults.riderFtp,
+  },
+  'log-to-file': {
+    describe: '<value> log to file',
+    type: 'number',
+    default: defaults.logToFile,
   }
 };
