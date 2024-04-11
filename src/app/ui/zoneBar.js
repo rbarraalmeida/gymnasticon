@@ -9,6 +9,10 @@ const ZONES = [
     {id: 6, start: 121, finish: 150, fgColor: 255, bgColor: 65, lightBgColor: 41}, // red
     {id: 7, start: 150, finish: 200, fgColor: 255, bgColor: 160, lightBgColor: 136}  // purple
 ];
+const CUR_ZONE_HEIGHT = 3;
+const NEXT_ZONE_HEIGHT = 2;
+const FAR_ZONE_HEIGHT = 1;
+çonst ZONE_WIDTH = 2;
 
 export class ZoneBar {
   /**
@@ -36,6 +40,7 @@ export class ZoneBar {
   }
 
   draw(yPos) {
+    this.xPos = 2;
     var _this = this;
     ZONES.forEach((zoneToDraw) => {
         _this.xPos = _this.drawZone(zoneToDraw, _this.xPos, yPos)});
@@ -44,21 +49,20 @@ export class ZoneBar {
   drawZone(zoneToDraw, xPos, yPos) {
     if (zoneToDraw.id === this.zone.id) {
         // current Zone
-        var spaceForCurrentZone = this.width - (ZONES.length - 1); 
+        //var spaceForCurrentZone = this.width - (ZONES.length - 1); 
 
-    } else if (Math.abs(zoneToDraw.id - this.zone.id) == 1) {
-        // next zone
-        this.buffer.fill( 
-            { attr: { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor} , 
-              region: { x: xPos , y: yPos + 1, width: 1, height: 2} });
-        xPos++;
-    } else {
-        // far away zone
-        this.buffer.fill( 
-            { attr: { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor} , 
-              region: { x: xPos , y: yPos + 2, width: 1, height: 1} });
-        xPos++;
     }
+    
+    var isNext = Math.abs(zoneToDraw.id - this.zone.id) == 1;
+    const CUR_ZONE_HEIGHT = 3;
+    const NEXT_ZONE_HEIGHT = 2;
+    const FAR_ZONE_HEIGHT = 1;
+
+    var zoneHeight = isNext ? NEXT_ZONE_HEIGHT : FAR_ZONE_HEIGHT;
+    this.buffer.fill( 
+         { attr: { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor} , 
+            region: { x: xPos , y: yPos + (CUR_ZONE_HEIGHT - zoneHeight), width: ZONE_WIDTH, height: zoneHeight}});
+    xPos += ZONE_WIDTH;
     return xPos;
   }
 }
