@@ -96,7 +96,7 @@ export class ZoneBar {
     buffer.fill( 
          { attr: mainAttrForZone,
             region: { x: xPos , 
-                      y: CUR_ZONE_HEIGHT - zoneHeight, 
+                      y: CUR_ZONE_HEIGHT - zoneHeight + 1, 
                       width: ZONE_WIDTH, 
                       height: zoneHeight}});
     xPos += ZONE_WIDTH;
