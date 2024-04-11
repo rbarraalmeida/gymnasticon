@@ -13,7 +13,7 @@ const ZONES = [
 const CUR_ZONE_HEIGHT = 3;
 const NEXT_ZONE_HEIGHT = 2;
 const FAR_ZONE_HEIGHT = 1;
-çonst ZONE_WIDTH = 2;
+const ZONE_WIDTH = 2;
 
 export class ZoneBar {
   /**
