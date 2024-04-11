@@ -30,10 +30,11 @@ export class TextClient {
 
   build() {
     this.term = termkit.terminal;
+    this.term.fullscreen();
     if (!DEBUG) {
-      this.term.fullscreen();
       this.term.hideCursor();
     }
+
 
     this.buffer = new termkit.ScreenBuffer( 
       { dst: this.term , 
