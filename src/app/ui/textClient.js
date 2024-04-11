@@ -116,6 +116,7 @@ export class TextClient {
     if (!DEBUG) {
       this.buffer.draw();
     } else{
+      console.log(`into zone: ${intoZone}`)
       console.log(`remaining Height: ${remainingHeight}`);
       console.log(`yPos: ${this.yPos}`)
       console.log(`xFullPos: ${xFullPos}`)
