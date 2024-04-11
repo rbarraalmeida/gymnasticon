@@ -79,22 +79,22 @@ export class TextClient {
     var power_perc = Math.round((this.power * 1000.0) / this.riderFtp)/10;
     var zoneColor = 5; // Purple
     var intoZone = 1.0;
-    if (power_perc <= 55) {
+    if (power_perc < 56) {
       zoneColor = 8;
       intoZone = power_perc/55;
-    } else if (power_perc <= 75) {
+    } else if (power_perc < 76) {
       zoneColor = 'blue';
       intoZone = (power_perc - 55)/(75 - 55);
-    } else if (power_perc <= 89) {
+    } else if (power_perc < 91) {
       zoneColor = 'green';
-      intoZone = (power_perc - 75)/(89 - 75);
-    } else if (power_perc <= 105) {
+      intoZone = (power_perc - 75)/(90 - 75);
+    } else if (power_perc < 106) {
       zoneColor = 'yellow';
-      intoZone = (power_perc - 89)/(105 - 89);
-    } else if (power_perc <= 120) {
+      intoZone = (power_perc - 90)/(105 - 90);
+    } else if (power_perc < 121) {
       zoneColor = 3; // Orange -> Olive
       intoZone = (power_perc - 105)/(120 - 105);
-    } else if (power_perc <= 150) {
+    } else if (power_perc < 151) {
       zoneColor = 'red';
       intoZone = (power_perc - 120)/(150 - 120);
     }
