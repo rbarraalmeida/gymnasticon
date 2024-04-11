@@ -75,6 +75,7 @@ var frames = 0 ;
 
 function draw()
 {
+    viewport.clear();
     var power_perc = 0;
     if (zoneBar) {
       zoneBar.updatePower(power);
