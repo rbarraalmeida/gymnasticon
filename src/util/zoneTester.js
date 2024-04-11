@@ -4,7 +4,7 @@
 import { ZoneBar } from '../app/ui/zoneBar';
 
 const termkit = require('terminal-kit');
-const FRAME_CHANGE = 1000;
+const FRAME_CHANGE = 10;
 var term ;
 var ScreenBuffer = termkit.ScreenBuffer ;
 var power = 0;
@@ -30,10 +30,10 @@ function init( callback )
 		term.hideCursor() ;
 		term.grabInput() ;
 		term.on( 'key' , inputs ) ;
-        callback() ;
-
         zoneBar = new ZoneBar(viewport, 200);
         zoneBar.build();
+
+        callback() ;
 	} ) ;
 }
 
