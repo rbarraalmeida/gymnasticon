@@ -39,7 +39,8 @@ export class TextClient {
     this.buffer = new termkit.ScreenBuffer( 
       { dst: this.term , 
         width: Math.max(this.term.width - 1, 40), 
-        height: Math.max(this.term.height -1, 40)}) ;
+        height: Math.max(this.term.height -1, 40),
+        delta: true}) ;
 
     CHARACTERS.forEach((element) => this.loadSprite(element));
 
@@ -103,6 +104,7 @@ export class TextClient {
     lines.push(`${POWER_LABEL}      ${this.pad(this.power, 3)} A`);
     lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 5)} A`);
 
+    this.buffer.clear();
     this.buffer.fill({ attr: { bgColor: 'black' }});
     this.yPos = 1;
     lines.forEach((element) => this.drawLine(element));
