@@ -84,7 +84,7 @@ function draw()
 
 function animate()
 {
-	zoneBar.draw(power);
+	if (zoneBar) zoneBar.draw(power);
     draw() ;
 	setTimeout( animate , 50 ) ;
 }
