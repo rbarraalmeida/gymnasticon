@@ -104,7 +104,6 @@ export class TextClient {
     lines.push(`${POWER_LABEL}      ${this.pad(this.power, 3)} A`);
     lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 5)} A`);
 
-    this.term.clear();
     this.buffer.clear();
     this.buffer.fill({ attr: { bgColor: 'black' }});
     this.yPos = 1;
