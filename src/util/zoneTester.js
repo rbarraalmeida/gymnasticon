@@ -3,6 +3,7 @@
 
 import { ZoneBar } from '../app/ui/zoneBar';
 import { ZONES } from '../app/ui/zoneBar';
+import { Palette } from "terminal-kit";
 
 const termkit = require('terminal-kit');
 const FRAME_CHANGE = 10;
@@ -19,12 +20,15 @@ function init( callback )
 		if ( error ) { throw new Error( 'Cannot detect terminal.' ) ; }
 		
 		term = detectedTerm ;
-		
+        this.palette = new Palette();
+        this.palette.generate();
+    
 		viewport = new ScreenBuffer( {
 			dst: term ,
 			width: Math.min( term.width ) ,
 			height: Math.min( term.height) - 1,
-            y: 2
+            y: 2,
+            palette: this.palette,
 		} ) ;
 				
 		term.fullscreen() ;

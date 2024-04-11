@@ -28,14 +28,11 @@ export class ZoneBar {
   }
 
   build() {
-    this.palette = new Palette();
-    this.palette.generate();
     this.buffer = ScreenBuffer.create( {
         dst: this.container, 
         width: this.container.width - 2,
         height: CUR_ZONE_HEIGHT, 
-        x: 1, 
-        palette: this.palette } ) ;
+        x: 1 } ) ;
   } 
 
   updatePower(power) {
@@ -91,7 +88,7 @@ export class ZoneBar {
         var lightAttrForZone = { bgColor: zoneToDraw.lightBgColor, fgColor: zoneToDraw.fgColor};
         buffer.fill( 
             { attr: lightAttrForZone,
-            region: { x: xPos + finalDarkPos , 
+            region: { x: xPos + finalDarkPos, 
                       y: 0, 
                       width: spaceForCurrentZone - finalDarkPos, 
                       height: CUR_ZONE_HEIGHT } } ) ;
