@@ -78,6 +78,7 @@ function draw()
 {
 	term.moveTo.eraseLine.bgWhite.green( 1 , 1 , 'Power: %d, percentage (ftp): %f, frame: %d\n' , power, power_perc, frames);
     viewport.fill({ attr: { bgColor: 'black', fgColor: 'white' }});
+    viewport.draw( { delta: true } ) ;
     var power_perc = 0;
     if (zoneBar) {
       zoneBar.updatePower(power);
