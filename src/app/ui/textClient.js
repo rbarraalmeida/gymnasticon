@@ -106,8 +106,9 @@ export class TextClient {
     this.buffer.fill({ attr: { bgColor: 'black' }});
     this.yPos = 1;
     lines.forEach((element) => this.drawLine(element));
+    this.yPos += 3; // add some spacing here.
 
-    var remainingHeight = this.buffer.height - this.yPos;
+    var remainingHeight = Math.min(this.buffer.height - this.yPos, 3);
     var xFullPos = Math.round(this.buffer.width * intoZone);
     this.buffer.fill( 
       { attr: { bgColor: zoneColor } , 
