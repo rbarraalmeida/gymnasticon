@@ -76,7 +76,7 @@ function draw()
 {
     var power_perc = 0;
     if (zoneBar) {
-      zoneBar.update(power);
+      zoneBar.updatePower(power);
       power_perc = zoneBar.getPowerPerc();
       zoneBar.draw(2);
     } 
