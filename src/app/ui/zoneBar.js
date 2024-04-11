@@ -57,6 +57,8 @@ export class ZoneBar {
     var _this = this;
     ZONES.forEach((zoneToDraw) => {
         xPos = _this.drawZone(buffer, zoneToDraw, xPos)});
+
+    buffer.draw();
   }
 
   /**
