@@ -139,11 +139,7 @@ function getZone(power_perc) {
  */
 function getIntoZone(zone, power_perc) {
     var length = zone.finish - zone.start;
-    var soFar = 1.0; // Handles the last zone.
-    if (length > 0) {
-      soFar = power_perc - zone.start;
-    }
-
-    return soFar/length;
+    var soFar = soFar = power_perc - zone.start;
+    return Math.min(Math.max(0, soFar/length), 1);
 }
   
