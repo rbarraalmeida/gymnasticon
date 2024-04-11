@@ -37,11 +37,22 @@ export class ZoneBar {
 
   draw(yPos) {
     this.yPos = yPos;
+    ZONES.forEach((zone) => this.yPos = this.drawZone(zoneToDraw, this.yPos));
+  }
 
-    var spaceForCurrentZone = this.width
+  drawZone(zoneToDraw, yPos) {
+    if (zoneToDraw.id === this.zone.id) {
+        // current Zone
+        var spaceForCurrentZone = this.width - (ZONES.length - 1); 
+
+    } else if (Math.abs(zoneToDraw.id - this.zone.id) == 1) {
+        // next zone
+    } else {
+        // far away zone
+    }
+    return yPos;
   }
 }
-
 
 /**
  * 
