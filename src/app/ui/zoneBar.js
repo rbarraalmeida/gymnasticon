@@ -95,7 +95,7 @@ export class ZoneBar {
                       y: 0, 
                       width: spaceForCurrentZone - finalDarkPos, 
                       height: CUR_ZONE_HEIGHT } } ) ;
-        console.log(`\t\t\tlight x:${finalDarkPos + 1} y:0 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
+        console.log(`\t\t\tlight x:${finalDarkPos} y:0 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
         return xPos + spaceForCurrentZone;
     }
     
