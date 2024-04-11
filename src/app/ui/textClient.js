@@ -51,13 +51,13 @@ export class TextClient {
           delta: true,
           palette: palette,
         }) ;
+  
+      _this.zoneBar = new ZoneBar(this.term, this.riderFtp);
+      _this.zoneBar.build();
+    
+      CHARACTERS.forEach((element) => _this.loadSprite(element));
+      _this.draw();
     } ) ;
-    
-    this.zoneBar = new ZoneBar(this.term, this.riderFtp);
-    this.zoneBar.build();
-    
-    CHARACTERS.forEach((element) => this.loadSprite(element));
-    this.draw();
   }
 
   loadSprite(character) {
@@ -75,7 +75,6 @@ export class TextClient {
     this.cadence = cadence;
     this.speed = speed;
     this.power = power;
-    this.zoneBar.updatePower(this.power);
   }
 
   pad(num, size) {
@@ -88,13 +87,16 @@ export class TextClient {
    * Draws the UI.
    */
   draw() {
-    var lines = [];
-    var power_perc = Math.round((this.power * 1000.0) / this.riderFtp)/10;
+    if (!this.term) return;
+    this.zoneBar.updatePower(this.power);
 
-    lines.push(`${CADENCE_LABEL}  ${this.pad(this.cadence, 3)}`);
+    var lines = [];
+    var power_perc = this.zoneBar.getPowerPerc();
+    
+    lines.push(`${CADENCE_LABEL} ${this.pad(this.cadence, 4)}`);
     lines.push(`${SPEED_LABEL} ${this.pad(this.speed, 4)}`);
-    lines.push(`${POWER_LABEL}  ${this.pad(this.power, 3)}`);
-    lines.push(`${POWER_PERC_LABEL}  ${this.pad(power_perc.toFixed(0), 3)}`);
+    lines.push(`${POWER_LABEL} ${this.pad(this.power, 4)}`);
+    lines.push(`${POWER_PERC_LABEL} ${this.pad(power_perc.toFixed(0), 4)}`);
 
     this.buffer.clear();
     this.buffer.fill({ attr: { bgColor: 'black' }});
