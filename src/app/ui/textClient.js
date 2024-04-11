@@ -155,7 +155,7 @@ export class TextClient {
         });
         this.xPos += characterSprite.width;
       } else {
-        this.xPos += this.sprites['A'].width - 3;
+        this.xPos += this.sprites['A'].width;
       }
     }
     this.yPos += this.sprites['A'].height;
