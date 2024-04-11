@@ -4,10 +4,11 @@
 import { ZoneBar } from '../app/ui/zoneBar';
 
 const termkit = require('terminal-kit');
+const FRAME_CHANGE = 1000;
 var term ;
 var ScreenBuffer = termkit.ScreenBuffer ;
 var power = 0;
-
+var continuousMode = true;
 var viewport, zoneBar;
 
 function init( callback )
@@ -66,6 +67,7 @@ function inputs( key )
 			terminate() ;
 			break ;
 	}
+    continuousMode = false;
 }
 
 var frames = 0 ;
@@ -84,6 +86,10 @@ function draw()
 	term.moveTo.eraseLine.bgWhite.green( 1 , 1 , 'Power: %d, percentage (ftp): %f\n' , power, power_perc) ;
 	
 	frames ++ ;
+   
+    if (frams % FRAME_CHANGE === 0) {
+        power += 1
+    }
 }
 
 function animate()

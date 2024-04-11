@@ -37,6 +37,8 @@ export class ZoneBar {
 
   draw(yPos) {
     this.yPos = yPos;
+
+    var spaceForCurrentZone = this.width
   }
 }
 
