@@ -29,7 +29,7 @@ export class ZoneBar {
 
   build() {
     this.palette = new Palette() ;
-    this.palette.generate() ;
+    //this.palette.generate() ;
     this.buffer = ScreenBuffer.create( {
         dst: this.container, 
         width: this.container.width - 2,
