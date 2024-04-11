@@ -30,6 +30,12 @@ export class ZoneBar {
   build() {
     this.palette = new Palette() ;
     this.palette.generate() ;
+    this.buffer = ScreenBuffer.create( {
+        dst: this.container, 
+        width: this.container.width - 2,
+        height: CUR_ZONE_HEIGHT, 
+        x: 1, 
+        palette: this.palette } ) ;
   } 
 
   updatePower(power) {
@@ -45,14 +51,8 @@ export class ZoneBar {
   }
 
   draw(yPos) {
-    var buffer = ScreenBuffer.create( {
-        dst: this.container, 
-        width: this.container.width - 2,
-        height: CUR_ZONE_HEIGHT, 
-        x: 1, 
-        y: yPos, 
-        palette: this.palette } ) ;
-
+    this.buffer.y = yPos;
+    this.buffer.clear();
     var xPos = 1;
     var _this = this;
     ZONES.forEach((zoneToDraw) => {
