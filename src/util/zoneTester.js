@@ -72,8 +72,7 @@ var frames = 0 ;
 
 function draw()
 {
-	sprites.background.draw( { dst: viewport , tile: true } ) ;
-	sprites.spaceship.draw( { dst: viewport , blending: true , wrap: 'both' } ) ;
+	if (zoneBar) zoneBar.draw(power);
 	var stats = viewport.draw( { delta: true } ) ;
 	//var stats = viewport.draw() ;
 	
@@ -84,7 +83,6 @@ function draw()
 
 function animate()
 {
-	if (zoneBar) zoneBar.draw(power);
     draw() ;
 	setTimeout( animate , 50 ) ;
 }
