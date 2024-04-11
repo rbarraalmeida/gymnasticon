@@ -37,7 +37,9 @@ export class ZoneBar {
 
   draw(yPos) {
     this.yPos = yPos;
-    ZONES.forEach((zone) => this.yPos = this.drawZone(zoneToDraw, this.yPos));
+    _this = this;
+    ZONES.forEach((zoneToDraw) => {
+        _this.yPos = _this.drawZone(zoneToDraw, _this.yPos)});
   }
 
   drawZone(zoneToDraw, yPos) {
