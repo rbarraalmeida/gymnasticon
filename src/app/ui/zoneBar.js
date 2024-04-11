@@ -10,14 +10,6 @@ const ZONES = [
     {id: 7, start: 150, finish: 1000}
 ];
 
-if (power_perc < 56) {
-} else if (power_perc < 76) {
-} else if (power_perc < 91) {
-} else if (power_perc < 106) {
-} else if (power_perc < 121) {
-else if (power_perc < 151) {
-
-
 export class ZoneBar {
   /**
     * 
@@ -31,18 +23,20 @@ export class ZoneBar {
     this.xPos = 2;
   } 
 
-  draw(power, yPos) {
-    this.yPos = yPos;
+  updatePower(power) {
     this.power = power;
     this.power_perc = (this.power * 100.0) / this.riderFtp;
     
     this.zone = getZoneInfo(this.power_perc);
     this.intoZone = getIntoZone(this.zone, this.power_perc);
-    // TODO
   }
 
   getPowerPerc() {
     return this.power_perc.toFixed(0);
+  }
+
+  draw(yPos) {
+    this.yPos = yPos;
   }
 }
 

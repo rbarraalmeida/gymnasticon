@@ -72,11 +72,16 @@ var frames = 0 ;
 
 function draw()
 {
-	if (zoneBar) zoneBar.draw(power);
+    var power_perc = 0;
+    if (zoneBar) {
+      zoneBar.update(power);
+      power_perc = zoneBar.getPowerPerc();
+      zoneBar.draw(2);
+    } 
 	var stats = viewport.draw( { delta: true } ) ;
 	//var stats = viewport.draw() ;
 	
-	term.moveTo.eraseLine.bgWhite.green( 1 , 1 , 'Power: %d\n' , power) ;
+	term.moveTo.eraseLine.bgWhite.green( 1 , 1 , 'Power: %d, percentage (ftp): %f\n' , power, power_perc) ;
 	
 	frames ++ ;
 }
