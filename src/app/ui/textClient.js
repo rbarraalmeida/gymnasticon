@@ -99,10 +99,10 @@ export class TextClient {
       intoZone = (power_perc - 120)/(150 - 120);
     }
 
-    lines.push(`${CADENCE_LABEL}      ${this.pad(this.cadence, 3)}`);
-    lines.push(`${SPEED_LABEL}     ${this.pad(this.speed, 4)}`);
-    lines.push(`${POWER_LABEL}      ${this.pad(this.power, 3)}`);
-    lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 5)}`);
+    lines.push(`${CADENCE_LABEL}   ${this.pad(this.cadence, 3)}`);
+    lines.push(`${SPEED_LABEL}  ${this.pad(this.speed, 4)}`);
+    lines.push(`${POWER_LABEL}   ${this.pad(this.power, 3)}`);
+    lines.push(`${POWER_PERC_LABEL} ${this.pad(power_perc.toFixed(0), 5)}`);
 
     this.buffer.clear();
     this.buffer.fill({ attr: { bgColor: 'black' }});
