@@ -7,7 +7,7 @@ export class Logger {
   }
 
   log(...args) {
-    //return this._cons.log(this.prefix, ...args);
+    return this._cons.log(this.prefix, ...args);
   }
 
   error(...args) {
