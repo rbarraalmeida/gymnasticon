@@ -2,6 +2,7 @@
 "use strict" ;
 
 import { ZoneBar } from '../app/ui/zoneBar';
+import { ZONES } from '../app/ui/zoneBar';
 
 const termkit = require('terminal-kit');
 const FRAME_CHANGE = 10;
@@ -83,7 +84,18 @@ function draw()
       power_perc = zoneBar.getPowerPerc();
       zoneBar.draw(2);
     } 
-	var stats = viewport.draw( { delta: true } ) ;
+	
+
+    var xPos = 1;
+    viewport.moveTo(xPos, 10);
+    ZONES.forEach((zone) => {
+        viewport.put(
+            { x: xPos++, attr: { bgColor: zone.bgColor, fgColor: zone.fgColor}} , `${zone.id}`);
+        viewport.put(
+            { x: xPos++, attr: { bgColor: zone.lightBgColor, fgColor: zone.fgColor}} , `${zone.id}`); 
+     
+    });
+    var stats = viewport.draw( { delta: true } ) ;
 	
 	
 	frames ++ ;
