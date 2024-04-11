@@ -7,7 +7,7 @@ const fs = require('fs');
 
 const WHITE_IN_BLACK = { attr: { color: 'white' , bgColor: 'black' },
                          transparencyChar: '#'};
-const RED_IN_BLACK = { attr: { color: 'red' , bgColor: 'black' },
+const RED_IN_BLACK = { attr: { color: 'cyan' , bgColor: 'black' },
                        transparencyChar: '#'};
 const INPUT_DIR = 'src/datagen/data/';
 const OUTPUT_DIR = 'lib/datagen/data/';
@@ -43,9 +43,9 @@ function generateCharacter(element, color) {
   characterSprite.x = xPos;
   characterSprite.y = yPos;
   characterSprite.draw({dst: buffer});
-  xPos += 4;
+  xPos += characterSprite.width;
   if (xPos > 40) {
     xPos = 1;
-    yPos += 7;
+    yPos += characterSprite.height;
   }
 }
