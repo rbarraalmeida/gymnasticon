@@ -92,7 +92,7 @@ export class ZoneBar {
     }
     
     // near or far zones
-    var isNext = Math.abs(zoneToDraw.id - this.zone.id) == 1;
+    var isNext = Math.abs(zoneToDraw.id - this.zone.id) === 1;
     var zoneHeight = isNext ? NEXT_ZONE_HEIGHT : FAR_ZONE_HEIGHT;
     buffer.fill( 
          { attr: mainAttrForZone,
