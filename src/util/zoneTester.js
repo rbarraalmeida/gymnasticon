@@ -33,6 +33,7 @@ function init( callback )
         callback() ;
 
         zoneBar = new ZoneBar(viewport, 200);
+        zoneBar.build();
 	} ) ;
 }
 

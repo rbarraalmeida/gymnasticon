@@ -1,4 +1,5 @@
 import { ScreenBuffer } from "terminal-kit";
+import { Palette } from "terminal-kit";
 
 const ZONES = [
     {id: 1, start: 0, finish: 56, fgColor: 255, bgColor: 248, lightBgColor: 251}, // gray
@@ -17,14 +18,19 @@ const FAR_ZONE_HEIGHT = 1;
 export class ZoneBar {
   /**
     * 
-    * @param {ScreenBuffer} buffer 
+    * @param {ScreenBuffer} container 
     * @param {number} riderFtp;
     */
-  constructor(buffer, riderFtp) {
-    this.buffer = buffer;
+  constructor(container, riderFtp) {
+    this.container = container;
     this.riderFtp = riderFtp;
     this.width = buffer.width - 2;
     this.xPos = 2;
+  }
+
+  build() {
+    this.palette = new Palette() ;
+    palette.generate() ;
   } 
 
   updatePower(power) {
@@ -40,17 +46,24 @@ export class ZoneBar {
   }
 
   draw(yPos) {
-    this.xPos = 2;
+    this.buffer = ScreenBuffer.create( {
+        dst: this.container, 
+        width: this.container.width - 2,
+        height: CUR_ZONE_HEIGHT, 
+        x: 1, 
+        y: yPos, 
+        palette: this.palette } ) ;
+
+    var xPos = 1;
     var _this = this;
     ZONES.forEach((zoneToDraw) => {
-        _this.xPos = _this.drawZone(zoneToDraw, _this.xPos, yPos)});
+        xPos = _this.drawZone(zoneToDraw, xPos)});
   }
 
-  drawZone(zoneToDraw, xPos, yPos) {
+  drawZone(zoneToDraw, xPos) {
     if (zoneToDraw.id === this.zone.id) {
         // current Zone
         //var spaceForCurrentZone = this.width - (ZONES.length - 1); 
-
     }
     
     var isNext = Math.abs(zoneToDraw.id - this.zone.id) == 1;
@@ -61,7 +74,10 @@ export class ZoneBar {
     var zoneHeight = isNext ? NEXT_ZONE_HEIGHT : FAR_ZONE_HEIGHT;
     this.buffer.fill( 
          { attr: { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor} , 
-            region: { x: xPos , y: yPos + (CUR_ZONE_HEIGHT - zoneHeight), width: ZONE_WIDTH, height: zoneHeight}});
+            region: { x: xPos , 
+                      y: CUR_ZONE_HEIGHT - zoneHeight, 
+                      width: ZONE_WIDTH, 
+                      height: zoneHeight}});
     xPos += ZONE_WIDTH;
     return xPos;
   }
