@@ -75,7 +75,7 @@ var frames = 0 ;
 
 function draw()
 {
-	term.moveTo.eraseLine.bgWhite.green( 1 , 1 , 'xulambs\n');
+	term.moveTo.eraseLine.bgWhite.green( 1 , 1 , 'Power: %d, percentage (ftp): %f, frame: %d\n' , power, power_perc, frames);
     viewport.fill({ attr: { bgColor: 'black', fgColor: 'white' }});
     var power_perc = 0;
     if (zoneBar) {
@@ -85,7 +85,6 @@ function draw()
     } 
 	//var stats = viewport.draw( { delta: true } ) ;
 	
-	term.moveTo.eraseLine.bgWhite.green( 1 , 1 , 'Power: %d, percentage (ftp): %f, frame: %d\n' , power, power_perc, frames);
 	
 	frames ++ ;
    
