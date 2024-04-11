@@ -115,7 +115,7 @@ export class TextClient {
         region: { x: 1 , y: this.yPos , width: xFullPos, height: remainingHeight } } ) ;
     if (xFullPos < this.buffer.width) {
         this.buffer.fill( 
-          { attr: { bgColor: 'bright'+zoneColor } , 
+          { attr: { bgColor: 'gray' } , 
             region: { x: xFullPos , y: this.yPos , width: this.buffer.width - xFullPos, height: remainingHeight } } ) ;
     }
             
