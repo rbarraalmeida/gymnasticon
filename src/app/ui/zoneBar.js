@@ -61,11 +61,28 @@ export class ZoneBar {
   }
 
   drawZone(zoneToDraw, xPos) {
+    var mainAttrForZone = { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor};
     if (zoneToDraw.id === this.zone.id) {
         // current Zone
-        //var spaceForCurrentZone = this.width - (ZONES.length - 1); 
+        var spaceForCurrentZone = this.width - (ZONES.length - 1) * ZONE_WIDTH;
+        var finalDarkPos = spaceForCurrentZone * this.intoZone; 
+        this.buffer.fill(
+            { attr: mainAttrForZone,
+              region: { x: xPos, 
+                        y: 1,
+                        width: finalDarkPos,
+                        height: CUR_ZONE_HEIGHT }}) ;
+        var lightAttrForZone = { bgColor: zoneToDraw.lightBgColor, fgColor: zoneToDraw.fgColor};
+        this.buffer.fill( 
+            { attr: lightAttrForZone,
+            region: { x: finalDarkPos, 
+                      y: 1, 
+                      width: spaceForCurrentZone - finalDarkPos, 
+                      height: CUR_ZONE_HEIGHT } } ) ;
+        return xPos + spaceForCurrentZone;
     }
     
+    // near or far zones
     var isNext = Math.abs(zoneToDraw.id - this.zone.id) == 1;
     const CUR_ZONE_HEIGHT = 3;
     const NEXT_ZONE_HEIGHT = 2;
@@ -73,7 +90,7 @@ export class ZoneBar {
 
     var zoneHeight = isNext ? NEXT_ZONE_HEIGHT : FAR_ZONE_HEIGHT;
     this.buffer.fill( 
-         { attr: { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor} , 
+         { attr: mainAttrForZone,
             region: { x: xPos , 
                       y: CUR_ZONE_HEIGHT - zoneHeight, 
                       width: ZONE_WIDTH, 
