@@ -1,4 +1,5 @@
-
+import { Palette } from "terminal-kit";
+import { ZoneBar } from "./zoneBar";
 
 const CADENCE_LABEL = "CAD";
 const SPEED_LABEL = "VEL";
@@ -11,6 +12,7 @@ const CHARACTERS = ['0', '1', '2', '3',
     'R', 'T', 'V', 'O'];
 
 const termkit = require('terminal-kit');
+
 const DEBUG = false;
 
 export class TextClient {
@@ -29,21 +31,32 @@ export class TextClient {
   }
 
   build() {
-    this.term = termkit.terminal;
-    this.term.fullscreen();
-    if (!DEBUG) {
-      this.term.hideCursor();
-    }
-
-
-    this.buffer = new termkit.ScreenBuffer( 
-      { dst: this.term , 
-        width: Math.max(this.term.width, 40), 
-        height: Math.max(this.term.height, 40),
-        delta: true}) ;
-
+    var _this = this;
+    termkit.getDetectedTerminal( function( error , detectedTerm ) {
+		
+      if ( error ) { throw new Error( 'Cannot detect terminal.' ) ; }
+      
+      _this.term = detectedTerm ;
+      var palette = new Palette();
+      palette.generate();
+      _this.term.fullscreen();
+      if (!DEBUG) {
+        _this.term.hideCursor();
+      }
+  
+      _this.buffer = new termkit.ScreenBuffer( 
+        { dst: _this.term , 
+          width: Math.max(_this.term.width, 40), 
+          height: Math.max(_this.term.height, 40),
+          delta: true,
+          palette: palette,
+        }) ;
+    } ) ;
+    
+    this.zoneBar = new ZoneBar(this.term, this.riderFtp);
+    this.zoneBar.build();
+    
     CHARACTERS.forEach((element) => this.loadSprite(element));
-
     this.draw();
   }
 
@@ -62,6 +75,7 @@ export class TextClient {
     this.cadence = cadence;
     this.speed = speed;
     this.power = power;
+    this.zoneBar.updatePower(this.power);
   }
 
   pad(num, size) {
@@ -70,34 +84,12 @@ export class TextClient {
     return num;
   }
 
-
   /**
    * Draws the UI.
    */
   draw() {
     var lines = [];
     var power_perc = Math.round((this.power * 1000.0) / this.riderFtp)/10;
-    var zoneColor = 5; // Purple
-    var intoZone = 1.0;
-    if (power_perc < 56) {
-      zoneColor = 8;
-      intoZone = power_perc/55;
-    } else if (power_perc < 76) {
-      zoneColor = 'blue';
-      intoZone = (power_perc - 55)/(75 - 55);
-    } else if (power_perc < 91) {
-      zoneColor = 'green';
-      intoZone = (power_perc - 75)/(90 - 75);
-    } else if (power_perc < 106) {
-      zoneColor = 'yellow';
-      intoZone = (power_perc - 90)/(105 - 90);
-    } else if (power_perc < 121) {
-      zoneColor = 3; // Orange -> Olive
-      intoZone = (power_perc - 105)/(120 - 105);
-    } else if (power_perc < 151) {
-      zoneColor = 'red';
-      intoZone = (power_perc - 120)/(150 - 120);
-    }
 
     lines.push(`${CADENCE_LABEL}  ${this.pad(this.cadence, 3)}`);
     lines.push(`${SPEED_LABEL} ${this.pad(this.speed, 4)}`);
@@ -110,26 +102,10 @@ export class TextClient {
     lines.forEach((element) => this.drawLine(element));
     this.yPos += 3; // add some spacing here.
 
-    var remainingHeight = Math.min(this.buffer.height - this.yPos, 3);
-    var xFullPos = Math.round(this.buffer.width * intoZone);
-    this.buffer.fill( 
-      { attr: { bgColor: zoneColor } , 
-        region: { x: 1 , y: this.yPos , width: xFullPos, height: remainingHeight } } ) ;
-    if (xFullPos < this.buffer.width) {
-        this.buffer.fill( 
-          { attr: { bgColor: 7 } , // lighy gray
-            region: { x: xFullPos , y: this.yPos , width: this.buffer.width - xFullPos, height: remainingHeight } } ) ;
-    }
+    this.zoneBar.draw(this.yPos);
             
-    if (!DEBUG) {
-      this.buffer.draw();
-    } else{
-      console.log(`into zone: ${intoZone}`)
-      console.log(`remaining Height: ${remainingHeight}`);
-      console.log(`yPos: ${this.yPos}`)
-      console.log(`xFullPos: ${xFullPos}`)
-    }
-
+    this.buffer.draw();
+    
     // adds a callback to draw things
     var _this = this;
     setTimeout(function() { _this.draw(); }, 50);
