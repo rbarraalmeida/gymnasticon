@@ -38,8 +38,8 @@ export class TextClient {
 
     this.buffer = new termkit.ScreenBuffer( 
       { dst: this.term , 
-        width: Math.max(this.term.width - 1, 40), 
-        height: Math.max(this.term.height -1, 40),
+        width: Math.max(this.term.width, 40), 
+        height: Math.max(this.term.height, 40),
         delta: true}) ;
 
     CHARACTERS.forEach((element) => this.loadSprite(element));
