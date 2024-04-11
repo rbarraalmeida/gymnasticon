@@ -11,8 +11,8 @@ export const ZONES = [
     {id: 7, start: 150, finish: 200, fgColor: 254, bgColor: 159, lightBgColor: 135}  // purple
 ];
 const CUR_ZONE_HEIGHT = 3;
-const NEXT_ZONE_HEIGHT = 2;
-const FAR_ZONE_HEIGHT = 1;
+const NEXT_ZONE_HEIGHT = 3;
+const FAR_ZONE_HEIGHT = 3;
 const ZONE_WIDTH = 2;
 
 export class ZoneBar {
