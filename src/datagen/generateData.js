@@ -2,12 +2,12 @@
 "use strict";
 
 const termkit = require('terminal-kit');
-const term = termkit.terminal;fasdfasd
+const term = termkit.terminal;
 const fs = require('fs');
 
 const WHITE_IN_BLACK = { attr: { color: 'white' , bgColor: 'black' },
                          transparencyChar: '#'};
-const RED_IN_BLACK = { attr: { color: 'cyan' , bgColor: 'black' },
+const RED_IN_BLACK = { attr: { color: 'red' , bgColor: 'black' },
                        transparencyChar: '#'};
 const INPUT_DIR = 'src/datagen/data/';
 const OUTPUT_DIR = 'lib/datagen/data/';
