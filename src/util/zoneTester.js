@@ -87,7 +87,7 @@ function draw()
 	
 	frames ++ ;
    
-    if (frams % FRAME_CHANGE === 0) {
+    if (frames % FRAME_CHANGE === 0) {
         power += 1
     }
 }
