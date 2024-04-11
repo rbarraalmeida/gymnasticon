@@ -2,7 +2,7 @@
 "use strict";
 
 const termkit = require('terminal-kit');
-const term = termkit.terminal;
+const term = termkit.terminal;fasdfasd
 const fs = require('fs');
 
 const WHITE_IN_BLACK = { attr: { color: 'white' , bgColor: 'black' },
