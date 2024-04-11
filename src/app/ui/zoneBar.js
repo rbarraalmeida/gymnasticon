@@ -72,22 +72,22 @@ export class ZoneBar {
     var mainAttrForZone = { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor};
     if (zoneToDraw.id === this.zone.id) {
         // current Zone
-        var spaceForCurrentZone = buffer.width - (ZONES.length - 1) * ZONE_WIDTH;
-        var finalDarkPos = spaceForCurrentZone * this.intoZone; 
-        buffer.fill(
-            { attr: mainAttrForZone,
-              region: { x: xPos, 
-                        y: 1,
-                        width: finalDarkPos,
-                        height: CUR_ZONE_HEIGHT }}) ;
-        var lightAttrForZone = { bgColor: zoneToDraw.lightBgColor, fgColor: zoneToDraw.fgColor};
-        buffer.fill( 
-            { attr: lightAttrForZone,
-            region: { x: finalDarkPos, 
-                      y: 1, 
-                      width: spaceForCurrentZone - finalDarkPos, 
-                      height: CUR_ZONE_HEIGHT } } ) ;
-        return xPos + spaceForCurrentZone;
+        //var spaceForCurrentZone = buffer.width - (ZONES.length - 1) * ZONE_WIDTH;
+        //var finalDarkPos = spaceForCurrentZone * this.intoZone; 
+        //buffer.fill(
+        //    { attr: mainAttrForZone,
+        //      region: { x: xPos, 
+        //                y: 1,
+        //                width: finalDarkPos,
+        //               height: CUR_ZONE_HEIGHT }}) ;
+        //var lightAttrForZone = { bgColor: zoneToDraw.lightBgColor, fgColor: zoneToDraw.fgColor};
+        //buffer.fill( 
+        //    { attr: lightAttrForZone,
+        //    region: { x: finalDarkPos, 
+        //              y: 1, 
+        //              width: spaceForCurrentZone - finalDarkPos, 
+        //              height: CUR_ZONE_HEIGHT } } ) ;
+        //return xPos + spaceForCurrentZone;
     }
     
     // near or far zones
