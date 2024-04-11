@@ -24,7 +24,6 @@ export class ZoneBar {
   constructor(container, riderFtp) {
     this.container = container;
     this.riderFtp = riderFtp;
-    this.width = buffer.width - 2;
     this.xPos = 2;
   }
 
@@ -46,7 +45,7 @@ export class ZoneBar {
   }
 
   draw(yPos) {
-    this.buffer = ScreenBuffer.create( {
+    var buffer = ScreenBuffer.create( {
         dst: this.container, 
         width: this.container.width - 2,
         height: CUR_ZONE_HEIGHT, 
@@ -57,23 +56,30 @@ export class ZoneBar {
     var xPos = 1;
     var _this = this;
     ZONES.forEach((zoneToDraw) => {
-        xPos = _this.drawZone(zoneToDraw, xPos)});
+        xPos = _this.drawZone(buffer, zoneToDraw, xPos)});
   }
 
-  drawZone(zoneToDraw, xPos) {
+  /**
+   * 
+   * @param {ScreenBuffer} buffer 
+   * @param {*} zoneToDraw 
+   * @param {*} xPos 
+   * @returns 
+   */
+  drawZone(buffer, zoneToDraw, xPos) {
     var mainAttrForZone = { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor};
     if (zoneToDraw.id === this.zone.id) {
         // current Zone
-        var spaceForCurrentZone = this.width - (ZONES.length - 1) * ZONE_WIDTH;
+        var spaceForCurrentZone = buffer.width - (ZONES.length - 1) * ZONE_WIDTH;
         var finalDarkPos = spaceForCurrentZone * this.intoZone; 
-        this.buffer.fill(
+        buffer.fill(
             { attr: mainAttrForZone,
               region: { x: xPos, 
                         y: 1,
                         width: finalDarkPos,
                         height: CUR_ZONE_HEIGHT }}) ;
         var lightAttrForZone = { bgColor: zoneToDraw.lightBgColor, fgColor: zoneToDraw.fgColor};
-        this.buffer.fill( 
+        buffer.fill( 
             { attr: lightAttrForZone,
             region: { x: finalDarkPos, 
                       y: 1, 
@@ -89,7 +95,7 @@ export class ZoneBar {
     const FAR_ZONE_HEIGHT = 1;
 
     var zoneHeight = isNext ? NEXT_ZONE_HEIGHT : FAR_ZONE_HEIGHT;
-    this.buffer.fill( 
+    buffer.fill( 
          { attr: mainAttrForZone,
             region: { x: xPos , 
                       y: CUR_ZONE_HEIGHT - zoneHeight, 
