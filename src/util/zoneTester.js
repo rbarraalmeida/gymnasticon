@@ -89,8 +89,8 @@ function draw()
 	
 	frames ++ ;
    
-    if (frames % FRAME_CHANGE === 0) {
-        power += 1
+    if (frames % FRAME_CHANGE === 0 && continuousMode) {
+        power += 5
     }
 }
 
