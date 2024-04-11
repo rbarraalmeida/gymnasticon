@@ -75,7 +75,7 @@ export class ZoneBar {
         console.log(`\t\tisCurrent`);
         // current Zone
         var spaceForCurrentZone = buffer.width - (ZONES.length - 1) * ZONE_WIDTH;
-        var finalDarkPos = spaceForCurrentZone * this.intoZone; 
+        var finalDarkPos = Math.round(spaceForCurrentZone * this.intoZone); 
         buffer.fill(
             { attr: mainAttrForZone,
               region: { x: xPos, 
