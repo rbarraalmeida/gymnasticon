@@ -50,7 +50,7 @@ export class ZoneBar {
   }
 
   draw(yPos) {
-    console.log("\n\n\ndrawing a new bar");
+    console.log(`\n\n\ndrawing a new bar width:${this.buffer.width} height:${this.buffer.height}`);
     this.buffer.y = yPos;
     this.buffer.clear();
     var xPos = 1;
