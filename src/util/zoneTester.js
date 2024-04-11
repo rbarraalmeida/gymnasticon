@@ -83,7 +83,7 @@ function draw()
       power_perc = zoneBar.getPowerPerc();
       zoneBar.draw(2);
     } 
-	//var stats = viewport.draw( { delta: true } ) ;
+	var stats = viewport.draw( { delta: true } ) ;
 	
 	
 	frames ++ ;

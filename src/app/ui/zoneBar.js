@@ -1,7 +1,7 @@
 import { ScreenBuffer } from "terminal-kit";
 import { Palette } from "terminal-kit";
 
-const ZONES = [
+export const ZONES = [
     {id: 1, start: 0, finish: 56, fgColor: 254, bgColor: 247, lightBgColor: 250}, // gray
     {id: 2, start: 56, finish: 76, fgColor: 254, bgColor: 85, lightBgColor: 48}, // blue
     {id: 3, start: 76, finish: 91, fgColor: 254, bgColor: 81, lightBgColor: 57}, // green
