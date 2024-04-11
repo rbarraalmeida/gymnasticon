@@ -82,7 +82,7 @@ function draw()
       power_perc = zoneBar.getPowerPerc();
       zoneBar.draw(2);
     } 
-	//var stats = viewport.draw( { delta: true } ) ;
+	var stats = viewport.draw( { delta: true } ) ;
 	
 	term.moveTo.eraseLine.bgWhite.green( 1 , 1 , 'Power: %d, percentage (ftp): %f, frame: %d\n' , power, power_perc, frames);
 	

@@ -29,7 +29,7 @@ export class ZoneBar {
 
   build() {
     this.palette = new Palette() ;
-    //this.palette.generate() ;
+    this.palette.generate() ;
     this.buffer = ScreenBuffer.create( {
         dst: this.container, 
         width: this.container.width - 2,
@@ -50,7 +50,7 @@ export class ZoneBar {
   }
 
   draw(yPos) {
-    console.log(`\n\n\ndrawing a new bar width:${this.buffer.width} height:${this.buffer.height}`);
+    //console.log(`\n\n\ndrawing a new bar width:${this.buffer.width} height:${this.buffer.height}`);
     this.buffer.y = yPos;
     this.buffer.clear();
     var xPos = 1;
@@ -69,10 +69,10 @@ export class ZoneBar {
    * @returns 
    */
   drawZone(buffer, zoneToDraw, xPos) {
-    console.log(`\tdrawing zone: ${zoneToDraw.id} xPos: ${xPos}`);
+    //console.log(`\tdrawing zone: ${zoneToDraw.id} xPos: ${xPos}`);
     var mainAttrForZone = { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor};
     if (zoneToDraw.id === this.zone.id) {
-        console.log(`\t\tisCurrent`);
+        //console.log(`\t\tisCurrent`);
         // current Zone
         var spaceForCurrentZone = buffer.width - (ZONES.length - 1) * ZONE_WIDTH;
         var finalDarkPos = Math.round(spaceForCurrentZone * this.intoZone); 
@@ -82,7 +82,7 @@ export class ZoneBar {
                         y: 1,
                         width: finalDarkPos,
                        height: CUR_ZONE_HEIGHT }}) ;
-        console.log(`\t\t\tsolid x:${xPos} y:1 width: ${finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
+        //console.log(`\t\t\tsolid x:${xPos} y:1 width: ${finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
         var lightAttrForZone = { bgColor: zoneToDraw.lightBgColor, fgColor: zoneToDraw.fgColor};
         buffer.fill( 
             { attr: lightAttrForZone,
@@ -90,17 +90,17 @@ export class ZoneBar {
                       y: 1, 
                       width: spaceForCurrentZone - finalDarkPos, 
                       height: CUR_ZONE_HEIGHT } } ) ;
-        console.log(`\t\t\tlight x:${finalDarkPos + 1} y:1 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
+        //console.log(`\t\t\tlight x:${finalDarkPos + 1} y:1 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
         return xPos + spaceForCurrentZone;
     }
     
     // near or far zones
     var isNext = Math.abs(zoneToDraw.id - this.zone.id) === 1;
-    if (isNext) {
-        console.log(`\t\tisNext`);
-    } else {
-        console.log(`\t\tisFar`);
-    }
+    //if (isNext) {
+    //    console.log(`\t\tisNext`);
+    //} else {
+    //    console.log(`\t\tisFar`);
+    //}
     var zoneHeight = isNext ? NEXT_ZONE_HEIGHT : FAR_ZONE_HEIGHT;
     buffer.fill( 
          { attr: mainAttrForZone,
@@ -108,7 +108,7 @@ export class ZoneBar {
                       y: CUR_ZONE_HEIGHT - zoneHeight + 1, 
                       width: ZONE_WIDTH, 
                       height: zoneHeight}});
-    console.log(`\t\t\tsolid x:${xPos} y:${CUR_ZONE_HEIGHT - zoneHeight + 1} width: ${ZONE_WIDTH} height: ${zoneHeight}`);
+    //console.log(`\t\t\tsolid x:${xPos} y:${CUR_ZONE_HEIGHT - zoneHeight + 1} width: ${ZONE_WIDTH} height: ${zoneHeight}`);
     xPos += ZONE_WIDTH;
     return xPos;
   }
