@@ -77,10 +77,10 @@ export class TextClient {
   draw() {
     var lines = [];
     var power_perc = Math.round((this.power * 1000.0) / this.riderFtp)/10;
-    var zoneColor = '#800080';
+    var zoneColor = 5; // Purple
     var intoZone = 1.0;
     if (power_perc <= 55) {
-      zoneColor = '#696969';
+      zoneColor = 8;
       intoZone = power_perc/55;
     } else if (power_perc <= 75) {
       zoneColor = 'blue';
@@ -92,7 +92,7 @@ export class TextClient {
       zoneColor = 'yellow';
       intoZone = (power_perc - 89)/(105 - 89);
     } else if (power_perc <= 120) {
-      zoneColor = '#FF8C00';
+      zoneColor = 3; // Orange -> Olive
       intoZone = (power_perc - 105)/(120 - 105);
     } else if (power_perc <= 150) {
       zoneColor = 'red';
@@ -117,7 +117,7 @@ export class TextClient {
         region: { x: 1 , y: this.yPos , width: xFullPos, height: remainingHeight } } ) ;
     if (xFullPos < this.buffer.width) {
         this.buffer.fill( 
-          { attr: { bgColor: '#D3D3D3' } , 
+          { attr: { bgColor: 7 } , // lighy gray
             region: { x: xFullPos , y: this.yPos , width: this.buffer.width - xFullPos, height: remainingHeight } } ) ;
     }
             
