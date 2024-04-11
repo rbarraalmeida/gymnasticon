@@ -29,7 +29,7 @@ export class ZoneBar {
 
   build() {
     this.palette = new Palette() ;
-    palette.generate() ;
+    this.palette.generate() ;
   } 
 
   updatePower(power) {
@@ -90,10 +90,6 @@ export class ZoneBar {
     
     // near or far zones
     var isNext = Math.abs(zoneToDraw.id - this.zone.id) == 1;
-    const CUR_ZONE_HEIGHT = 3;
-    const NEXT_ZONE_HEIGHT = 2;
-    const FAR_ZONE_HEIGHT = 1;
-
     var zoneHeight = isNext ? NEXT_ZONE_HEIGHT : FAR_ZONE_HEIGHT;
     buffer.fill( 
          { attr: mainAttrForZone,
