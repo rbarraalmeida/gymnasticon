@@ -96,7 +96,7 @@ export class TextClient {
     lines.push(`${CADENCE_LABEL} ${this.pad(this.cadence, 4)}`);
     lines.push(`${SPEED_LABEL} ${this.pad(this.speed, 4)}`);
     lines.push(`${POWER_LABEL} ${this.pad(this.power, 4)}`);
-    lines.push(`${POWER_PERC_LABEL} ${this.pad(power_perc.toFixed(0), 4)}`);
+    lines.push(`${POWER_PERC_LABEL} ${this.pad(power_perc, 4)}`);
 
     this.buffer.clear();
     this.buffer.fill({ attr: { bgColor: 'black' }});
