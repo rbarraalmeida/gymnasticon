@@ -77,10 +77,10 @@ export class TextClient {
   draw() {
     var lines = [];
     var power_perc = Math.round((this.power * 1000.0) / this.riderFtp)/10;
-    var zoneColor = 'purple';
+    var zoneColor = '#800080';
     var intoZone = 1.0;
     if (power_perc <= 55) {
-      zoneColor = 'gray';
+      zoneColor = '#696969';
       intoZone = power_perc/55;
     } else if (power_perc <= 75) {
       zoneColor = 'blue';
@@ -92,17 +92,17 @@ export class TextClient {
       zoneColor = 'yellow';
       intoZone = (power_perc - 89)/(105 - 89);
     } else if (power_perc <= 120) {
-      zoneColor = 'orange';
+      zoneColor = '#FF8C00';
       intoZone = (power_perc - 105)/(120 - 105);
     } else if (power_perc <= 150) {
       zoneColor = 'red';
       intoZone = (power_perc - 120)/(150 - 120);
     }
 
-    lines.push(`${CADENCE_LABEL}      ${this.pad(this.cadence, 3)} A`);
-    lines.push(`${SPEED_LABEL}     ${this.pad(this.speed, 4)} A`);
-    lines.push(`${POWER_LABEL}      ${this.pad(this.power, 3)} A`);
-    lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 5)} A`);
+    lines.push(`${CADENCE_LABEL}      ${this.pad(this.cadence, 3)}`);
+    lines.push(`${SPEED_LABEL}     ${this.pad(this.speed, 4)}`);
+    lines.push(`${POWER_LABEL}      ${this.pad(this.power, 3)}`);
+    lines.push(`${POWER_PERC_LABEL}    ${this.pad(power_perc.toFixed(0), 5)}`);
 
     this.buffer.clear();
     this.buffer.fill({ attr: { bgColor: 'black' }});
@@ -117,7 +117,7 @@ export class TextClient {
         region: { x: 1 , y: this.yPos , width: xFullPos, height: remainingHeight } } ) ;
     if (xFullPos < this.buffer.width) {
         this.buffer.fill( 
-          { attr: { bgColor: 'gray' } , 
+          { attr: { bgColor: '#D3D3D3' } , 
             region: { x: xFullPos , y: this.yPos , width: this.buffer.width - xFullPos, height: remainingHeight } } ) ;
     }
             
