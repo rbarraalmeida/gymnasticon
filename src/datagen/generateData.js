@@ -43,9 +43,9 @@ function generateCharacter(element, color) {
   characterSprite.x = xPos;
   characterSprite.y = yPos;
   characterSprite.draw({dst: buffer});
-  xPos += 4;
+  xPos += characterSprite.width;
   if (xPos > 40) {
     xPos = 1;
-    yPos += 7;
+    yPos += characterSprite.height;
   }
 }
