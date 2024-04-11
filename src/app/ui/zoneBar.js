@@ -24,7 +24,7 @@ export class ZoneBar {
   constructor(container, riderFtp) {
     this.container = container;
     this.riderFtp = riderFtp;
-    this.xPos = 2;
+    this.xPos = 0;
   }
 
   build() {
@@ -34,7 +34,7 @@ export class ZoneBar {
         dst: this.container, 
         width: this.container.width - 2,
         height: CUR_ZONE_HEIGHT, 
-        x: 2, 
+        x: 1, 
         palette: this.palette } ) ;
   } 
 
@@ -54,11 +54,11 @@ export class ZoneBar {
     this.buffer.y = yPos;
     this.buffer.fill(
         { attr: { bgColor: 0, fgColor: 15},
-          region: { x: 1, 
-                    y: 1,
+          region: { x: 0, 
+                    y: 0,
                     width: this.buffer.width,
-                   height: this.buffer.height }}) ;
-    var xPos = 1;
+                    height: this.buffer.height }}) ;
+    var xPos = 0;
     var _this = this;
     ZONES.forEach((zoneToDraw) => {
         xPos = _this.drawZone(_this.buffer, zoneToDraw, xPos)});
@@ -84,15 +84,15 @@ export class ZoneBar {
         buffer.fill(
             { attr: mainAttrForZone,
               region: { x: xPos, 
-                        y: 1,
+                        y: 0,
                         width: finalDarkPos,
-                       height: CUR_ZONE_HEIGHT }}) ;
+                        height: CUR_ZONE_HEIGHT }}) ;
         //console.log(`\t\t\tsolid x:${xPos} y:1 width: ${finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
         var lightAttrForZone = { bgColor: zoneToDraw.lightBgColor, fgColor: zoneToDraw.fgColor};
         buffer.fill( 
             { attr: lightAttrForZone,
             region: { x: finalDarkPos + 1, 
-                      y: 1, 
+                      y: 0, 
                       width: spaceForCurrentZone - finalDarkPos, 
                       height: CUR_ZONE_HEIGHT } } ) ;
         //console.log(`\t\t\tlight x:${finalDarkPos + 1} y:1 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
@@ -110,7 +110,7 @@ export class ZoneBar {
     buffer.fill( 
          { attr: mainAttrForZone,
             region: { x: xPos , 
-                      y: CUR_ZONE_HEIGHT - zoneHeight + 1, 
+                      y: CUR_ZONE_HEIGHT - zoneHeight, 
                       width: ZONE_WIDTH, 
                       height: zoneHeight}});
     //console.log(`\t\t\tsolid x:${xPos} y:${CUR_ZONE_HEIGHT - zoneHeight + 1} width: ${ZONE_WIDTH} height: ${zoneHeight}`);
