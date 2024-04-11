@@ -11,7 +11,7 @@ const CHARACTERS = ['0', '1', '2', '3',
     'R', 'T', 'V', 'O'];
 
 const termkit = require('terminal-kit');
-const DEBUG = true;
+const DEBUG = false;
 
 export class TextClient {
   /**
