@@ -1,13 +1,13 @@
 import { ScreenBuffer } from "terminal-kit";
 
 const ZONES = [
-    {id: 1, start: 0, finish: 56},
-    {id: 2, start: 56, finish: 76},
-    {id: 3, start: 76, finish: 91}, 
-    {id: 4, start: 91, finish: 106}, 
-    {id: 5, start: 106, finish: 121},
-    {id: 6, start: 121, finish: 150},
-    {id: 7, start: 150, finish: 1000}
+    {id: 1, start: 0, finish: 56, fgColor: 255, bgColor: 248, lightBgColor: 251}, // gray
+    {id: 2, start: 56, finish: 76, fgColor: 255, bgColor: 86, lightBgColor: 49}, // blue
+    {id: 3, start: 76, finish: 91, fgColor: 255, bgColor: 82, lightBgColor: 58}, // green
+    {id: 4, start: 91, finish: 106, fgColor: 255, bgColor: 44, lightBgColor: 32}, // yellow
+    {id: 5, start: 106, finish: 121, fgColor: 255, bgColor: 237, lightBgColor: 78}, // orange
+    {id: 6, start: 121, finish: 150, fgColor: 255, bgColor: 65, lightBgColor: 41}, // red
+    {id: 7, start: 150, finish: 200, fgColor: 255, bgColor: 160, lightBgColor: 136}  // purple
 ];
 
 export class ZoneBar {
@@ -61,8 +61,10 @@ export class ZoneBar {
 function getZone(power_perc) {
   var zone;
   
-  for (let i = 0; i < ZONES.length; i++) {
-    if (power_perc < ZONES[i].finish) {
+  zone = ZONES[ZONES.length - 1]; // defaults to purple.
+  for (let i = 0; i < ZONES.length - 1; i++) {
+    if (power_perc < ZONES[i].finish &&
+        power_perc >= ZONES[i].start) {
       zone = ZONES[i];
       break;
     }
@@ -77,7 +79,10 @@ function getZone(power_perc) {
  */
 function getIntoZone(zone, power_perc) {
     var length = zone.finish - zone.start;
-    var soFar = power_perc - zone.start;
+    var soFar = 1.0; // Handles the last zone.
+    if (length > 0) {
+      soFar = power_perc - zone.start;
+    }
 
     return soFar/length;
 }
