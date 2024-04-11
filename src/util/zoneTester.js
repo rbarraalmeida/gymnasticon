@@ -75,7 +75,7 @@ var frames = 0 ;
 
 function draw()
 {
-    viewport.clear();
+    viewport.fill({ attr: { bgColor: 'black', fgColor: 'white' }});
     var power_perc = 0;
     if (zoneBar) {
       zoneBar.updatePower(power);
