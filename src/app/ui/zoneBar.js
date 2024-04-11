@@ -27,7 +27,7 @@ export class ZoneBar {
     this.power = power;
     this.power_perc = (this.power * 100.0) / this.riderFtp;
     
-    this.zone = getZoneInfo(this.power_perc);
+    this.zone = getZone(this.power_perc);
     this.intoZone = getIntoZone(this.zone, this.power_perc);
   }
 
