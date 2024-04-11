@@ -34,7 +34,7 @@ export class ZoneBar {
         dst: this.container, 
         width: this.container.width - 2,
         height: CUR_ZONE_HEIGHT, 
-        x: 1, 
+        x: 2, 
         palette: this.palette } ) ;
   } 
 
@@ -52,7 +52,12 @@ export class ZoneBar {
   draw(yPos) {
     //console.log(`\n\n\ndrawing a new bar width:${this.buffer.width} height:${this.buffer.height}`);
     this.buffer.y = yPos;
-    this.buffer.clear();
+    this.buffer.fill(
+        { attr: { bgColor: 0, fgColor: 15},
+          region: { x: 1, 
+                    y: 1,
+                    width: this.buffer.width,
+                   height: this.buffer.height }}) ;
     var xPos = 1;
     var _this = this;
     ZONES.forEach((zoneToDraw) => {
