@@ -52,7 +52,7 @@ export class TextClient {
           palette: palette,
         }) ;
   
-      _this.zoneBar = new ZoneBar(this.term, this.riderFtp);
+      _this.zoneBar = new ZoneBar(_this.term, _this.riderFtp);
       _this.zoneBar.build();
     
       CHARACTERS.forEach((element) => _this.loadSprite(element));
