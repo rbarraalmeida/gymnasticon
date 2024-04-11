@@ -36,23 +36,30 @@ export class ZoneBar {
   }
 
   draw(yPos) {
-    this.yPos = yPos;
     _this = this;
     ZONES.forEach((zoneToDraw) => {
-        _this.yPos = _this.drawZone(zoneToDraw, _this.yPos)});
+        _this.xPos = _this.drawZone(zoneToDraw, _this.xPos, yPos)});
   }
 
-  drawZone(zoneToDraw, yPos) {
+  drawZone(zoneToDraw, xPos, yPos) {
     if (zoneToDraw.id === this.zone.id) {
         // current Zone
         var spaceForCurrentZone = this.width - (ZONES.length - 1); 
 
     } else if (Math.abs(zoneToDraw.id - this.zone.id) == 1) {
         // next zone
+        this.buffer.fill( 
+            { attr: { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor} , 
+              region: { x: xPos , y: yPos + 1, width: 1, height: 2} });
+        xPos++;
     } else {
         // far away zone
+        this.buffer.fill( 
+            { attr: { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor} , 
+              region: { x: xPos , y: yPos + 2, width: 1, height: 1} });
+        xPos++;
     }
-    return yPos;
+    return xPos;
   }
 }
 
