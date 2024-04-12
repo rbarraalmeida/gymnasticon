@@ -99,7 +99,7 @@ export class ZoneBar {
           var charAttr = charPos < xPos + finalDarkPos ?
             mainAttrForZone :
             lightAttrForZone;
-          buffer.put({x: charPos, y: 1, attr: charAttr}, `${character}`);
+          buffer.put({x: xPos + 2, y: 1, markup: true, attr: charAttr}, `^+^/${character}`);
           charPos++;
         });
         return xPos + spaceForCurrentZone;
