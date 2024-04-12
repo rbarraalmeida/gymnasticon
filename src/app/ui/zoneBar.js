@@ -94,7 +94,7 @@ export class ZoneBar {
                       height: CUR_ZONE_HEIGHT } } ) ;
         //console.log(`\t\t\tlight x:${xPos + finalDarkPos} y:0 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
         var label = `Zone ${zoneToDraw.id}: ${zoneToDraw.name}`;
-        var charPos = xPos + Math.floor(spaceForCurrentZone/2);//- Math.floor(label.lenght/2);
+        var charPos = xPos + Math.floor((spaceForCurrentZone - label.length)/2);
         buffer.moveTo(charPos, 1);
         label.split('').forEach((character) => {
           var charAttr;
@@ -106,7 +106,7 @@ export class ZoneBar {
           buffer.put({x:charPos, markup: true, attr: charAttr}, `^+^/${character}`);
           charPos++;
         });
-        buffer.put({x:charPos, markup: true, attr: mainAttrForZone}, `${label.length} ${Math.floor(label.length/2)}  ${xPos + Math.floor(spaceForCurrentZone/2) - Math.floor(label.lenght/2)}`);
+        //buffer.put({x:charPos, markup: true, attr: mainAttrForZone}, `${label.length} ${Math.floor(label.length/2)}  ${xPos + Math.floor(spaceForCurrentZone/2) - Math.floor(label.lenght/2)}`);
         return xPos + spaceForCurrentZone;
     }
     
