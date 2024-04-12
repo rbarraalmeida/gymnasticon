@@ -195,7 +195,7 @@ export class App {
 
   onBikeStats({ power, cadence, speed}) {
     power = power > 0 ? Math.max(0, Math.round(power * this.powerScale + this.powerOffset)) : 0;
-    speed = speed > 0 ? Math.max(0, Math.round(speed * this.speedScale + this.speedOffset)) : 0;
+    speed = speed > 0 ? Math.max(0, Math.round(10 * speed * this.speedScale + this.speedOffset)/10) : 0;
     this.logger.log(`received stats from bike [power=${power}W cadence=${cadence}rpm speed=${speed}km/h]`);
     this.statsTimeout.reset();
     this.power = power;
