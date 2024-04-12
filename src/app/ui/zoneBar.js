@@ -97,9 +97,12 @@ export class ZoneBar {
         var charPos = xPos + 2;//Math.floor((spaceForCurrentZone - label.lenght)/2);
         buffer.moveTo(charPos, 1);
         [label].forEach((character) => {
-          var charAttr = charPos < xPos + finalDarkPos ?
-            mainAttrForZone :
-            lightAttrForZone;
+          var charAttr;
+          if (charPos < xPos + finalDarkPos) { ?
+            charAttr = mainAttrForZone;
+          } else{
+            charAttr = lightAttrForZone;
+          }  
           buffer.put({x:charPos, markup: true, attr: charAttr}, `^+^/${character}`);
           charPos++;
         });
