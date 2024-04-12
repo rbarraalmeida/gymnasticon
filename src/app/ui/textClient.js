@@ -53,7 +53,7 @@ export class TextClient {
         _this.term.hideCursor();
       }
 
-      _this.zoneBar = new ZoneBar(_this.term, _this.riderFtp);
+      _this.zoneBar = new ZoneBar(_this.buffer, _this.riderFtp);
       _this.zoneBar.build();
     
       CHARACTERS.forEach((element) => _this.loadSprite(element));
