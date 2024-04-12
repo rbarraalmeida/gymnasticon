@@ -93,7 +93,7 @@ export class ZoneBar {
                       width: spaceForCurrentZone - finalDarkPos, 
                       height: CUR_ZONE_HEIGHT } } ) ;
         //console.log(`\t\t\tlight x:${xPos + finalDarkPos} y:0 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
-        buffer.moveTo(xPos + 2, 1, "Zone %d: %s", zoneToDraw.id, zoneToDraw.name);
+        buffer.put({x: xPos + 2, y: 1}, `Zone ${zoneToDraw.id}: ${zoneToDraw.name}`);
         return xPos + spaceForCurrentZone;
     }
     
