@@ -94,13 +94,13 @@ export class ZoneBar {
                       height: CUR_ZONE_HEIGHT } } ) ;
         //console.log(`\t\t\tlight x:${xPos + finalDarkPos} y:0 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
         var label = `Zone ${zoneToDraw.id}: ${zoneToDraw.name}`;
-        var initialPos = xPos + Math.floor((spaceForCurrentZone - label.lenght)/2);
+        var charPos = xPos + Math.floor((spaceForCurrentZone - label.lenght)/2);
         [label].forEach((character) => {
-          var charAttr = initialPos < xPos + finalDarkPos ?
+          var charAttr = charPos < xPos + finalDarkPos ?
             mainAttrForZone :
             lightAttrForZone;
-          buffer.put({x: xPos + 2, y: 1, attr: charAttr}, `${character}`);
-          initialPos++;
+          buffer.put({x: charPos, y: 1, attr: charAttr}, `${character}`);
+          charPos++;
         });
         return xPos + spaceForCurrentZone;
     }
