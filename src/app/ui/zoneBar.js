@@ -95,11 +95,12 @@ export class ZoneBar {
         //console.log(`\t\t\tlight x:${xPos + finalDarkPos} y:0 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
         var label = `Zone ${zoneToDraw.id}: ${zoneToDraw.name}`;
         var charPos = xPos + Math.floor((spaceForCurrentZone - label.lenght)/2);
+        buffer.moveTo(charPos, 1);
         [label].forEach((character) => {
           var charAttr = charPos < xPos + finalDarkPos ?
             mainAttrForZone :
             lightAttrForZone;
-          buffer.put({x: xPos + 2, y: 1, markup: true, attr: charAttr}, `^+^/${character}`);
+          buffer.put({markup: true, attr: charAttr}, `^+^/${character}`);
           charPos++;
         });
         return xPos + spaceForCurrentZone;
