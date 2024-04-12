@@ -1,5 +1,4 @@
 import { ScreenBuffer } from "terminal-kit";
-import { Palette } from "terminal-kit";
 
 export const ZONES = [
     {id: 1, start: 0, finish: 56, fgColor: 254, bgColor: 247, lightBgColor: 250}, // gray
@@ -59,6 +58,8 @@ export class ZoneBar {
     var _this = this;
     ZONES.forEach((zoneToDraw) => {
         xPos = _this.drawZone(_this.buffer, zoneToDraw, xPos)});
+
+    this.buffer.draw();
   }
 
   /**

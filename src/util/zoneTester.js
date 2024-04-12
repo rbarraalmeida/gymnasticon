@@ -21,7 +21,6 @@ function init( callback )
 		
 		term = detectedTerm ;
         var palette = new Palette();
-        palette.generate();
     
 		viewport = new ScreenBuffer( {
 			dst: term ,
