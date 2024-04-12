@@ -7,11 +7,9 @@ export const ZONES = [
     {id: 4, start:  91, finish: 106, color:  0, lightColor:  0, bgColor:  43, lightBgColor: 102, name: "Lactate Threshold"}, // yellow
     {id: 5, start: 106, finish: 121, color:  0, lightColor:  0, bgColor: 236, lightBgColor:  29, name: "Vo2 Max"}, // orange
     {id: 6, start: 121, finish: 150, color: 15, lightColor: 15, bgColor:  64, lightBgColor:  40, name: "Anaerobic Capacity"}, // red
-    {id: 7, start: 150, finish: 200, color: 15, lightColor:  0, bgColor: 159, lightBgColor: 135, name: "Neuromuscular Power"}  // purple
+    {id: 7, start: 150, finish: 200, color: 15, lightColor: 15, bgColor: 159, lightBgColor: 135, name: "Neuromuscular Power"}  // purple
 ];
 
-// 254 - white - 15
-// 247 - black - 0
 const CUR_ZONE_HEIGHT = 3;
 const NEXT_ZONE_HEIGHT = 3;
 const FAR_ZONE_HEIGHT = 3;
