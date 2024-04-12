@@ -48,7 +48,7 @@ export class TextClient {
           palette: palette,
         }) ;
 
-      this.term.fullscreen();
+      _this.term.fullscreen();
       if (!DEBUG) {
         _this.term.hideCursor();
       }
