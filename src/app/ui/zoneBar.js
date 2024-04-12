@@ -4,7 +4,7 @@ export const ZONES = [
     {id: 1, name: "Active Recovery", start: 0, finish: 56, fgColor: 254, bgColor: 247, lightBgColor: 250}, // gray
     {id: 2, name: "Endurance", start: 56, finish: 76, fgColor: 254, bgColor: 85, lightBgColor: 48}, // blue
     {id: 3, name: "Tempo", start: 76, finish: 91, fgColor: 254, bgColor: 81, lightBgColor: 57}, // green
-    {id: 4, name: "Lactate Threshold", start: 91, finish: 106, fgColor: 254, bgColor: 43, lightBgColor: 102}, // yellow
+    {id: 4, name: "Lactate Threshold", start: 91, finish: 106, fgColor: 247, bgColor: 43, lightBgColor: 102}, // yellow
     {id: 5, name: "Vo2 Max", start: 106, finish: 121, fgColor: 254, bgColor: 236, lightBgColor: 29}, // orange
     {id: 6, name: "Anaerobic Capacity", start: 121, finish: 150, fgColor: 254, bgColor: 64, lightBgColor: 40}, // red
     {id: 7, name: "Neuromuscular Power", start: 150, finish: 200, fgColor: 254, bgColor: 159, lightBgColor: 135}  // purple
