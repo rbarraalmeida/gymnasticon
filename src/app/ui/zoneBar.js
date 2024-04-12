@@ -98,7 +98,7 @@ export class ZoneBar {
         buffer.moveTo(charPos, 1);
         [label].forEach((character) => {
           var charAttr;
-          if (charPos < xPos + finalDarkPos) { ?
+          if (charPos < xPos + finalDarkPos) {
             charAttr = mainAttrForZone;
           } else{
             charAttr = lightAttrForZone;
