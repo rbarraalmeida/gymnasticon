@@ -2,7 +2,7 @@ import { ScreenBuffer } from "terminal-kit";
 
 export const ZONES = [
     {id: 1, start:   0, finish:  56, color: 15, lightColor: 15, bgColor: 247, lightBgColor: 250, name: "Active Recovery"}, // gray
-    {id: 2, start:  56, finish:  76, color: 15, lightColor:  0, bgColor:  85, lightBgColor:  48, name: "Endurance"}, // blue
+    {id: 2, start:  56, finish:  76, color:  0, lightColor:  0, bgColor:  85, lightBgColor:  48, name: "Endurance"}, // blue
     {id: 3, start:  76, finish:  91, color: 15, lightColor: 15, bgColor:  81, lightBgColor:  57, name: "Tempo"}, // green
     {id: 4, start:  91, finish: 106, color:  0, lightColor:  0, bgColor:  43, lightBgColor: 102, name: "Lactate Threshold"}, // yellow
     {id: 5, start: 106, finish: 121, color:  0, lightColor:  0, bgColor: 236, lightBgColor:  29, name: "Vo2 Max"}, // orange
@@ -10,8 +10,8 @@ export const ZONES = [
     {id: 7, start: 150, finish: 200, color: 15, lightColor:  0, bgColor: 159, lightBgColor: 135, name: "Neuromuscular Power"}  // purple
 ];
 
-254 - white - 15
-247 - black - 0
+// 254 - white - 15
+// 247 - black - 0
 const CUR_ZONE_HEIGHT = 3;
 const NEXT_ZONE_HEIGHT = 3;
 const FAR_ZONE_HEIGHT = 3;
