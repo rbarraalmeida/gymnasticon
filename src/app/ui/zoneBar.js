@@ -1,13 +1,13 @@
 import { ScreenBuffer } from "terminal-kit";
 
 export const ZONES = [
-    {id: 1, name: "Active Recovery", start: 0, finish: 56, fgColor: 254, bgColor: 247, lightBgColor: 250}, // gray
-    {id: 2, name: "Endurance", start: 56, finish: 76, fgColor: 254, bgColor: 85, lightBgColor: 48}, // blue
-    {id: 3, name: "Tempo", start: 76, finish: 91, fgColor: 254, bgColor: 81, lightBgColor: 57}, // green
-    {id: 4, name: "Lactate Threshold", start: 91, finish: 106, fgColor: 247, bgColor: 43, lightBgColor: 102}, // yellow
-    {id: 5, name: "Vo2 Max", start: 106, finish: 121, fgColor: 254, bgColor: 236, lightBgColor: 29}, // orange
-    {id: 6, name: "Anaerobic Capacity", start: 121, finish: 150, fgColor: 254, bgColor: 64, lightBgColor: 40}, // red
-    {id: 7, name: "Neuromuscular Power", start: 150, finish: 200, fgColor: 254, bgColor: 159, lightBgColor: 135}  // purple
+    {id: 1, name: "Active Recovery", start: 0, finish: 56, color: 254, bgColor: 247, lightBgColor: 250}, // gray
+    {id: 2, name: "Endurance", start: 56, finish: 76, color: 254, bgColor: 85, lightBgColor: 48}, // blue
+    {id: 3, name: "Tempo", start: 76, finish: 91, color: 254, bgColor: 81, lightBgColor: 57}, // green
+    {id: 4, name: "Lactate Threshold", start: 91, finish: 106, color: 247, bgColor: 43, lightBgColor: 102}, // yellow
+    {id: 5, name: "Vo2 Max", start: 106, finish: 121, color: 254, bgColor: 236, lightBgColor: 29}, // orange
+    {id: 6, name: "Anaerobic Capacity", start: 121, finish: 150, color: 254, bgColor: 64, lightBgColor: 40}, // red
+    {id: 7, name: "Neuromuscular Power", start: 150, finish: 200, color: 254, bgColor: 159, lightBgColor: 135}  // purple
 ];
 const CUR_ZONE_HEIGHT = 3;
 const NEXT_ZONE_HEIGHT = 3;
@@ -50,7 +50,7 @@ export class ZoneBar {
     //console.log(`\n\n\ndrawing a new bar width:${this.buffer.width} height:${this.buffer.height}`);
     this.buffer.y = yPos;
     this.buffer.fill(
-        { attr: { bgColor: 0, fgColor: 15},
+        { attr: { bgColor: 0, color: 15},
           region: { x: 0, 
                     y: 0,
                     width: this.buffer.width,
@@ -72,7 +72,7 @@ export class ZoneBar {
    */
   drawZone(buffer, zoneToDraw, xPos) {
     //console.log(`\tdrawing zone: ${zoneToDraw.id} xPos: ${xPos}`);
-    var mainAttrForZone = { bgColor: zoneToDraw.bgColor, fgColor: zoneToDraw.fgColor};
+    var mainAttrForZone = { bgColor: zoneToDraw.bgColor, color: zoneToDraw.color};
     if (zoneToDraw.id === this.zone.id) {
         //console.log(`\t\tisCurrent`);
         // current Zone
@@ -85,7 +85,7 @@ export class ZoneBar {
                         width: finalDarkPos,
                         height: CUR_ZONE_HEIGHT }}) ;
         //console.log(`\t\t\tsolid x:${xPos} y:0 width: ${finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
-        var lightAttrForZone = { bgColor: zoneToDraw.lightBgColor, fgColor: zoneToDraw.fgColor};
+        var lightAttrForZone = { bgColor: zoneToDraw.lightBgColor, color: zoneToDraw.color};
         buffer.fill( 
             { attr: lightAttrForZone,
             region: { x: xPos + finalDarkPos, 
