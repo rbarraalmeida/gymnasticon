@@ -39,10 +39,6 @@ export class TextClient {
       _this.term = detectedTerm ;
       var palette = new Palette();
       palette.generate();
-      _this.term.fullscreen();
-      if (!DEBUG) {
-        _this.term.hideCursor();
-      }
   
       _this.buffer = new termkit.ScreenBuffer( 
         { dst: _this.term , 
@@ -51,7 +47,12 @@ export class TextClient {
           delta: true,
           palette: palette,
         }) ;
-  
+
+      this.term.fullscreen();
+      if (!DEBUG) {
+        _this.term.hideCursor();
+      }
+
       _this.zoneBar = new ZoneBar(_this.term, _this.riderFtp);
       _this.zoneBar.build();
     
@@ -87,7 +88,6 @@ export class TextClient {
    * Draws the UI.
    */
   draw() {
-    if (!this.term) return;
     this.zoneBar.updatePower(this.power);
 
     var lines = [];
@@ -106,7 +106,7 @@ export class TextClient {
 
     this.zoneBar.draw(this.yPos);
             
-    this.buffer.draw();
+    this.buffer.draw( { delta: true } );
     
     // adds a callback to draw things
     var _this = this;
