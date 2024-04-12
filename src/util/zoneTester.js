@@ -94,9 +94,9 @@ function draw()
     viewport.moveTo(xPos, 10);
     ZONES.forEach((zone) => {
         viewport.put(
-            { x: xPos++, markup: true, attr: { bgColor: zone.bgColor, fgColor: zone.fgColor}} , `^+^/${zone.id}`);
+            { x: xPos++, markup: true, attr: { bgColor: zone.bgColor, color: zone.color}} , `^+^/${zone.id}`);
         viewport.put(
-            { x: xPos++, markup: true, attr: { bgColor: zone.lightBgColor, fgColor: zone.fgColor}} , `^+^/${zone.id}`); 
+            { x: xPos++, markup: true, attr: { bgColor: zone.lightBgColor, color: zone.color}} , `^+^/${zone.id}`); 
      
     });
     var stats = viewport.draw( { delta: true } ) ;
