@@ -31,7 +31,8 @@ export class ZoneBar {
         dst: this.container, 
         width: this.container.width - 2,
         height: CUR_ZONE_HEIGHT, 
-        x: 1 } ) ;
+        x: 1,
+        palette: this.container.palette} ) ;
   } 
 
   updatePower(power) {
