@@ -57,9 +57,9 @@ export class TextClient {
       _this.zoneBar.build();
     
       CHARACTERS.forEach((element) => _this.loadSprite(element));
-      _this.number_of_characters = Math.floor((_this.term.width - 2) / this.sprites['A'].width);
+      _this.number_of_characters = Math.floor((_this.term.width - 2) / _this.sprites['A'].width);
       _this.metric_padding = _this.number_of_characters - 3;
-      _this.line_padding = Math.floor((_this.term.width - (_this.number_of_characters * this.sprites['A'].width)) / 2);
+      _this.line_padding = Math.floor((_this.term.width - (_this.number_of_characters * _this.sprites['A'].width)) / 2);
       _this.draw();
     } ) ;
   }
