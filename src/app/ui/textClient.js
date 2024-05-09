@@ -49,7 +49,7 @@ export class TextClient {
           delta: true,
           palette: palette,
         }) ;
-        _this.metric_padding = Math.floor((_this.term.width - 1) / CHARACTER_SIZE) - 3;
+        _this.metric_padding = Math.floor((_this.term.width - 2) / CHARACTER_SIZE) - 3;
       _this.term.fullscreen();
       if (!DEBUG) {
         _this.term.hideCursor();
