@@ -92,7 +92,7 @@ function draw()
 
 
     var xPos = 1;
-    viewport.moveTo(xPos, 10);
+    viewport.moveTo(xPos, 40);
     ZONES.forEach((zone) => {
         viewport.put(
             { x: xPos++, markup: true, attr: { bgColor: zone.bgColor, color: zone.color}} , `^+^/${zone.id}`);
