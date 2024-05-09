@@ -7,7 +7,6 @@ const SPEED_LABEL = "VEL";
 const POWER_LABEL = "POT";
 const POWER_PERC_LABEL = "POR";
 const SPRITE_DIR = "/home/pi/gymnasticon/lib/datagen/data/";
-const CHARACTER_SIZE=6;
 const CHARACTERS = ['0', '1', '2', '3', 
     '4', '5', '6', '7', '8', '9', '.',
     'A', 'C', 'D', 'E', 'L', 'P', 
@@ -49,7 +48,6 @@ export class TextClient {
           delta: true,
           palette: palette,
         }) ;
-        _this.metric_padding = Math.floor((_this.term.width - 2) / CHARACTER_SIZE) - 3;
       _this.term.fullscreen();
       if (!DEBUG) {
         _this.term.hideCursor();
@@ -59,6 +57,9 @@ export class TextClient {
       _this.zoneBar.build();
     
       CHARACTERS.forEach((element) => _this.loadSprite(element));
+      _this.number_of_characters = Math.floor((_this.term.width - 2) / this.sprites['A'].width);
+      _this.metric_padding = _this.number_of_characters - 3;
+      _this.line_padding = Math.floor((_this.term.width - (_this.number_of_characters * this.sprites['A'].width)) / 2);
       _this.draw();
     } ) ;
   }
@@ -118,7 +119,7 @@ export class TextClient {
     if (DEBUG) {
       console.log(line);
     }
-    this.xPos = 1;
+    this.xPos = this.line_padding;
     for (let i = 0; i < line.length; i++) {
       var character = line.charAt(i);
       if (DEBUG) {
