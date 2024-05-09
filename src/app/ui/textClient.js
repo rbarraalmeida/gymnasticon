@@ -1,6 +1,7 @@
 import { Palette } from "terminal-kit";
 import { ZoneBar } from "./zoneBar";
 
+const TIMEOUT = 1000; // 1000 miliseconds - 1 second
 const CADENCE_LABEL = "CAD";
 const SPEED_LABEL = "VEL";
 const POWER_LABEL = "POT";
@@ -93,24 +94,23 @@ export class TextClient {
     var lines = [];
     var power_perc = this.zoneBar.getPowerPerc();
     
-    lines.push(`${CADENCE_LABEL} ${this.pad(this.cadence, 4)}`);
-    lines.push(`${SPEED_LABEL} ${this.pad(this.speed, 4)}`);
-    lines.push(`${POWER_LABEL} ${this.pad(this.power, 4)}`);
-    lines.push(`${POWER_PERC_LABEL} ${this.pad(power_perc, 4)}`);
+    lines.push(`${CADENCE_LABEL} ${this.pad(this.cadence, 8)}`);
+    lines.push(`${SPEED_LABEL} ${this.pad(this.speed, 8)}`);
+    lines.push(`${POWER_LABEL} ${this.pad(this.power, 8)}`);
+    lines.push(`${POWER_PERC_LABEL} ${this.pad(power_perc, 8)}`);
 
     this.buffer.clear();
     this.buffer.fill({ attr: { bgColor: 'black' }});
     this.yPos = 1;
+    this.yPos = this.zoneBar.draw(this.yPos);
     lines.forEach((element) => this.drawLine(element));
     this.yPos += 3; // add some spacing here.
 
-    this.zoneBar.draw(this.yPos);
-            
     this.buffer.draw( { delta: true } );
     
     // adds a callback to draw things
     var _this = this;
-    setTimeout(function() { _this.draw(); }, 50);
+    setTimeout(function() { _this.draw(); }, TIMEOUT);
   }
 
   drawLine(line) {

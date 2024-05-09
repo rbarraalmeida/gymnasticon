@@ -10,10 +10,10 @@ export const ZONES = [
     {id: 7, start: 150, finish: 200, color: 15, lightColor: 15, bgColor: 159, lightBgColor: 135, name: "Neuromuscular Power"}  // purple
 ];
 
-const CUR_ZONE_HEIGHT = 3;
-const NEXT_ZONE_HEIGHT = 3;
-const FAR_ZONE_HEIGHT = 3;
-const ZONE_WIDTH = 2;
+const CUR_ZONE_HEIGHT = 7;
+const NEXT_ZONE_HEIGHT = 7;
+const FAR_ZONE_HEIGHT = 7;
+const ZONE_WIDTH = 3;
 
 export class ZoneBar {
   /**
@@ -62,6 +62,7 @@ export class ZoneBar {
         xPos = _this.drawZone(_this.buffer, zoneToDraw, xPos)});
 
     this.buffer.draw();
+    return yPos + CUR_ZONE_HEIGHT + 2;
   }
 
   /**
