@@ -7,6 +7,7 @@ const SPEED_LABEL = "VEL";
 const POWER_LABEL = "POT";
 const POWER_PERC_LABEL = "POR";
 const SPRITE_DIR = "/home/pi/gymnasticon/lib/datagen/data/";
+const CHARACTER_SIZE=6;
 const CHARACTERS = ['0', '1', '2', '3', 
     '4', '5', '6', '7', '8', '9', '.',
     'A', 'C', 'D', 'E', 'L', 'P', 
@@ -48,7 +49,7 @@ export class TextClient {
           delta: true,
           palette: palette,
         }) ;
-
+        _this.metric_padding = Math.floor((_this.term.width - 1) / CHARACTER_SIZE) - 3;
       _this.term.fullscreen();
       if (!DEBUG) {
         _this.term.hideCursor();
@@ -94,10 +95,10 @@ export class TextClient {
     var lines = [];
     var power_perc = this.zoneBar.getPowerPerc();
     
-    lines.push(`${CADENCE_LABEL} ${this.pad(this.cadence, 8)}`);
-    lines.push(`${SPEED_LABEL} ${this.pad(this.speed, 8)}`);
-    lines.push(`${POWER_LABEL} ${this.pad(this.power, 8)}`);
-    lines.push(`${POWER_PERC_LABEL} ${this.pad(power_perc, 8)}`);
+    lines.push(`${CADENCE_LABEL} ${this.pad(this.cadence, _this.metric_padding)}`);
+    lines.push(`${SPEED_LABEL} ${this.pad(this.speed, _this.metric_padding)}`);
+    lines.push(`${POWER_LABEL} ${this.pad(this.power, _this.metric_padding)}`);
+    lines.push(`${POWER_PERC_LABEL} ${this.pad(power_perc, _this.metric_padding)}`);
 
     this.buffer.clear();
     this.buffer.fill({ attr: { bgColor: 'black' }});
