@@ -95,10 +95,10 @@ export class TextClient {
     var lines = [];
     var power_perc = this.zoneBar.getPowerPerc();
     
-    lines.push(`${CADENCE_LABEL} ${this.pad(this.cadence, _this.metric_padding)}`);
-    lines.push(`${SPEED_LABEL} ${this.pad(this.speed, _this.metric_padding)}`);
-    lines.push(`${POWER_LABEL} ${this.pad(this.power, _this.metric_padding)}`);
-    lines.push(`${POWER_PERC_LABEL} ${this.pad(power_perc, _this.metric_padding)}`);
+    lines.push(`${CADENCE_LABEL} ${this.pad(this.cadence, this.metric_padding)}`);
+    lines.push(`${SPEED_LABEL} ${this.pad(this.speed, this.metric_padding)}`);
+    lines.push(`${POWER_LABEL} ${this.pad(this.power, this.metric_padding)}`);
+    lines.push(`${POWER_PERC_LABEL} ${this.pad(power_perc, this.metric_padding)}`);
 
     this.buffer.clear();
     this.buffer.fill({ attr: { bgColor: 'black' }});
