@@ -97,7 +97,7 @@ export class ZoneBar {
         //console.log(`\t\t\tlight x:${xPos + finalDarkPos} y:0 width: ${spaceForCurrentZone - finalDarkPos} height: ${CUR_ZONE_HEIGHT}`);
         var label = `Zone ${zoneToDraw.id}: ${zoneToDraw.name}`;
         var charPos = xPos + Math.floor((spaceForCurrentZone - label.length)/2);
-        buffer.moveTo(charPos, 1);
+        buffer.moveTo(charPos, Math.floor(CUR_ZONE_HEIGHT / 2));
         label.split('').forEach((character) => {
           var charAttr;
           if (charPos < xPos + finalDarkPos) {
