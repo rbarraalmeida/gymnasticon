@@ -12,7 +12,7 @@ const PWR_DEVICE_NUMBER = 1;
 const SAC_DEVICE_TYPE = 0x79; // Bike Speed and Cadence Sensor
 const SAC_DEVICE_NUMBER = 2;
 const RF_CHANNEL = 57; // 2457 MHz
-const PERIOD = 65536 / 2; // 1 Hz; Send PWR & SaC data on every other cycle
+const PERIOD = 32768 / 2; // 2 Hz; Send PWR & SaC data on every other cycle
 const BROADCAST_INTERVAL = PERIOD / 32768; // seconds
 
 const SAC_PERIOD = PERIOD; // 8086/32768 ~4hz SPD+CDC
