@@ -140,8 +140,8 @@ export class App {
       } else {
         console.log = function() {}
       }
-      setTimeout(function(){ this.ui.build(); }, 0);
-
+      
+      this.ui.build();
 
       process.on('SIGINT', this.onSigInt);
       process.on('exit', this.onExit);
