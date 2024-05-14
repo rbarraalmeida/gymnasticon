@@ -206,8 +206,7 @@ export class App {
     this.wheelSimulation.speed = speed;
     let {crank, wheel} = this;
     //this.server.updateMeasurement({ power, crank, wheel });
-    //this.antServer.updateMeasurement({ power, cadence, crank});
-    //this.antServer.updateMeasurement({ power, cadence, wheel});
+    this.antServer.updateMeasurement({ power, cadence});
     this.ui.update(this.cadence, this.speed, this.power);
   }
 
