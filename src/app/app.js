@@ -141,8 +141,7 @@ export class App {
         console.log = function() {}
       }
       
-      this.ui.build();
-
+      
       process.on('SIGINT', this.onSigInt);
       process.on('exit', this.onExit);
 
@@ -162,6 +161,8 @@ export class App {
       this.startAnt();
       this.pingInterval.reset();
       this.statsTimeout.reset();
+
+      this.ui.build();
     } catch (e) {
       this.logger.error(e);
       process.exit(1);
