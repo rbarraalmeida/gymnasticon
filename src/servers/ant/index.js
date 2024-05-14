@@ -8,14 +8,15 @@ const WHEEL_TIMESTAMP_SCALE = 1024 / 1000; // timestamp resolution is 1/1024 sec
 
 const PWR_DEVICE_TYPE = 0x0b; // Bike Power Sensor
 const PWR_DEVICE_NUMBER = 1;
-const PWR_PERIOD = 8182; // 8182/32768 ~4hz PWR
 
 const SAC_DEVICE_TYPE = 0x79; // Bike Speed and Cadence Sensor
 const SAC_DEVICE_NUMBER = 2;
-const SAC_PERIOD = 8086; // 8086/32768 ~4hz SPD+CDC
 const RF_CHANNEL = 57; // 2457 MHz
-const PERIOD = 32768 / 2; // 2 Hz; Send PWR & SaC data on every other cycle
+const PERIOD = 65536 / 2; // 1 Hz; Send PWR & SaC data on every other cycle
 const BROADCAST_INTERVAL = PERIOD / 32768; // seconds
+
+const SAC_PERIOD = PERIOD; // 8086/32768 ~4hz SPD+CDC
+const PWR_PERIOD = PERIOD; // 8182/32768 ~4hz PWR
 
 const defaults = {
   deviceId: 11234,
