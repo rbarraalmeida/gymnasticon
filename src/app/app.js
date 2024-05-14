@@ -3,7 +3,7 @@ import bleno from '@abandonware/bleno';
 
 import {once} from 'events';
 
-import {GymnasticonServer} from '../servers/ble';
+//import {GymnasticonServer} from '../servers/ble';
 import {AntServer} from '../servers/ant';
 import {createBikeClient, getBikeTypes} from '../bikes';
 import {CrankSimulation} from './crankSimulation';
@@ -45,7 +45,8 @@ export const defaults = {
   botPort: 3000,
 
   // server options
-  serverAdapter: 'hci0', // adapter for receiving connections from apps
+  serverAdapter: 'hci1', // adapter for receiving connections from apps
+  // original serverAdapter: 'hci0', // adapter for receiving connections from apps
   serverName: 'Gymnasticon', // how the Gymnasticon will appear to apps
   serverPingInterval: 1, // send a power measurement update at least this often
 
@@ -97,7 +98,7 @@ export class App {
     this.logger = new Logger();
     this.crankSimulation = new CrankSimulation();
     this.wheelSimulation = new WheelSimulation();
-    this.server = new GymnasticonServer(bleno, opts.serverName);
+    //this.server = new GymnasticonServer(bleno, opts.serverName);
 
     this.antStick = createAntStick(opts);
     this.antServer = new AntServer(this.antStick, {deviceId: opts.antDeviceId});
@@ -156,7 +157,7 @@ export class App {
       await this.bike.connect();
       this.connectTimeout.cancel();
       this.logger.log(`bike connected ${this.bike.address}`);
-      this.server.start();
+      //this.server.start();
       this.startAnt();
       this.pingInterval.reset();
       this.statsTimeout.reset();
@@ -189,8 +190,9 @@ export class App {
   onPingInterval() {
     debuglog(`pinging app since no stats or pedal strokes for ${this.pingInterval.interval}s`);
     let {power, crank, wheel, cadence} = this;
-    this.server.updateMeasurement({ power, crank, wheel });
-    this.antServer.updateMeasurement({ power, cadence });
+    //this.server.updateMeasurement({ power, crank, wheel });
+    this.antServer.updateMeasurement({ power, cadence, crank });
+    this.antServer.updateMeasurement({ power, cadence, wheel });
   }
 
   onBikeStats({ power, cadence, speed}) {
@@ -204,8 +206,9 @@ export class App {
     this.crankSimulation.cadence = cadence;
     this.wheelSimulation.speed = speed;
     let {crank, wheel} = this;
-    this.server.updateMeasurement({ power, crank, wheel });
-    this.antServer.updateMeasurement({ power, cadence });
+    // this.server.updateMeasurement({ power, crank, wheel });
+    this.antServer.updateMeasurement({ power, cadence, crank});
+    this.antServer.updateMeasurement({ power, cadence, wheel});
     this.ui.update(this.cadence, this.speed, this.power);
   }
 

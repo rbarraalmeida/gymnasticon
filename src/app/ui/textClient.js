@@ -1,7 +1,7 @@
 import { Palette } from "terminal-kit";
 import { ZoneBar } from "./zoneBar";
 
-const TIMEOUT = 1000; // 1000 miliseconds - 1 second
+const TIMEOUT = 2000; // 1000 miliseconds - 1 second
 const CADENCE_LABEL = "CAD";
 const SPEED_LABEL = "VEL";
 const POWER_LABEL = "POT";
@@ -31,7 +31,7 @@ export class TextClient {
     this.xPos = 1;
   }
 
-  build() {
+  async build() {
     var _this = this;
     termkit.getDetectedTerminal( function( error , detectedTerm ) {
 		

@@ -23,13 +23,13 @@ export function createDropoutFilter() {
    */
   return function (curr) {
     let fixed = {...curr};
-    if (prev !== null && curr.power === 0 && (curr.cadence > 0 || parseFloat(curr.speed) > 0) && prev.power > 0) {
+    if (prev !== null && curr.power === 0 && prev.power > 0) {
       fixed.power = prev.power;
     }
-    if (prev !== null && curr.cadence === 0 && (curr.power > 0 || parseFloat(curr.speed) > 0) && prev.cadence > 0) {
+    if (prev !== null && curr.cadence === 0 && prev.cadence > 0) {
       fixed.cadence = prev.cadence;
     }
-    if (prev !== null && parseFloat(curr.speed) <= 1.0 && (curr.power > 0 || curr.cadence > 0) && parseFloat(prev.speed) > 1.0) {
+    if (prev !== null && parseFloat(curr.speed) <= 1.0 && parseFloat(prev.speed) > 1.0) {
       fixed.speed = prev.speed;
     }
     prev = curr;
