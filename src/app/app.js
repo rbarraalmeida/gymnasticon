@@ -176,7 +176,7 @@ export class App {
     let {power, crank, wheel, cadence} = this;
     //this.logger.log(`pedal stroke [timestamp=${timestamp} revolutions=${crank.revolutions} cadence=${cadence}rpm power=${power}W]`);
     //this.server.updateMeasurement({ power, crank, wheel });
-    //this.antServer.updateMeasurement({ power, cadence, crank, wheel});
+    this.antServer.updateMeasurement({ power, cadence, crank, wheel});
   }
 
   onWheelRotation(timestamp) {
@@ -186,7 +186,7 @@ export class App {
     let {power, crank, wheel, cadence} = this;
     //this.logger.log(`wheel rotation [timestamp=${timestamp} revolutions=${wheel.revolutions} speed=${this.wheelSimulation.speed}km/h power=${power}W]`);
     //this.server.updateMeasurement({ power, crank, wheel });
-    //this.antServer.updateMeasurement({ power, cadence, wheel});
+    this.antServer.updateMeasurement({ power, cadence, crank, wheel});
   }
 
   onPingInterval() {
@@ -208,7 +208,7 @@ export class App {
     this.wheelSimulation.speed = speed;
     let {crank, wheel} = this;
     //this.server.updateMeasurement({ power, crank, wheel });
-    //this.antServer.updateMeasurement({ power, cadence});
+    this.antServer.updateMeasurement({ power, cadence, crank, wheel});
     this.ui.update(this.cadence, this.speed, this.power);
   }
 
