@@ -155,6 +155,8 @@ export class KeiserBikeClient extends EventEmitter {
         this.onBikeTimeout();
         this.emit('stats', reset);
       }
+    } else {
+      this.emit('stats', reset);
     }
   }
 
