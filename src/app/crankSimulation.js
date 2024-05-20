@@ -20,12 +20,12 @@ export class CrankSimulation extends EventEmitter {
    * @param {number} cadence - the target cadence in rpm.
    */
   set cadence(x) {
-    this._cadence = x;
-    this._interval = x > 0 ? 1000 * (60 / this._cadence) : Infinity;
     if (this._timeoutId) {
       clearTimeout(this._timeoutId);
       this._timeoutId = null;
     }
+    this._cadence = x;
+    this._interval = x > 0 ? 1000 * (60 / this._cadence) : Infinity;
     this.schedulePedal();
   }
 
