@@ -139,7 +139,7 @@ export class KeiserBikeClient extends EventEmitter {
    * Set power & cadence to 0 when the bike dissapears
    */
   async onStatsTimeout() {
-    const reset = { power:0, cadence:0 };
+    const reset = { power:0, cadence:0, speed: 0 };
     debuglog('Stats timeout exceeded');
     console.log("Stats timeout: Restarting BLE Scan");
     if (this.state === 'connected') {
@@ -148,13 +148,14 @@ export class KeiserBikeClient extends EventEmitter {
           await this.noble.startScanningAsync(null, true);
         } catch (err) {
           console.log("Stats timeout: Unable to restart BLE Scan: " + err);
+          this.emit('stats', reset);
         }
       } else {
         console.log("Stats timeout: Bluetooth no longer powered on");
         this.onBikeTimeout();
+        this.emit('stats', reset);
       }
     }
-    this.emit('stats', reset);
   }
 
   /**
