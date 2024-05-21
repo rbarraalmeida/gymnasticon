@@ -1,5 +1,4 @@
 import {test} from 'tape';
-import sinon from 'sinon';
 import {updateValue} from '../../app/ui/textClient';
 
 test('equal values', t => {
