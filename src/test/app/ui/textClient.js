@@ -7,7 +7,7 @@ test('equal values', t => {
     value = updateValue(10.3, 10.3, 1);
     t.equal(value, 10.3, 'float value');
     value = updateValue("10", "10", 1);
-    t.equal(value, "10", 'string value');
+    t.equal(value, 10, 'string value');
     t.end();
   });
 

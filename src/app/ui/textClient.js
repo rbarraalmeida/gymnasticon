@@ -154,7 +154,17 @@ export class TextClient {
 
 }
 
+function toNumber(value) {
+  if (typeof value === 'string') {
+    return parseFloat(value);
+  } 
+  return value;
+}
+
 export function updateValue(currentValue, targetValue, step) {
+  currentValue = toNumber(currentValue);
+  targetValue = toNumber(targetValue);
+  
   if (currentValue === targetValue) return targetValue;
 
   let signal = targetValue > currentValue ? 1 : -1;
