@@ -12,6 +12,10 @@ const CHARACTERS = ['0', '1', '2', '3',
     'A', 'C', 'D', 'E', 'L', 'P', 
     'R', 'T', 'V', 'O'];
 
+const CADENCE_STEP = 5;
+const SPEED_STEP = 2;
+const POWER_STEP = 10;
+
 const termkit = require('terminal-kit');
 
 const DEBUG = false;
@@ -23,9 +27,12 @@ export class TextClient {
    */
   constructor(riderFtp) {
     this.riderFtp = riderFtp;
-    this.cadence = 0;
-    this.speed = 0;
-    this.power = 0;
+    this.targetCadence = 0;
+    this.targetSpeed = 0;
+    this.targetPower = 0;
+    this.currentCadence = 0;
+    this.currentSpeed = 0;
+    this.currentPower = 0;
     this.sprites = {};
     this.yPos = 1;
     this.xPos = 1;
@@ -76,9 +83,9 @@ export class TextClient {
    * @param {number} power 
    */
   update(cadence, speed, power) {
-    this.cadence = cadence;
-    this.speed = speed;
-    this.power = power;
+    this.targetCadence = cadence;
+    this.targetSpeed = speed;
+    this.targetPower = power;
   }
 
   pad(num, size) {
@@ -91,14 +98,18 @@ export class TextClient {
    * Draws the UI.
    */
   draw() {
-    this.zoneBar.updatePower(this.power);
+    this.currentCadence = updateValue(this.currentCadence, this.targetCadence, CADENCE_STEP);
+    this.currentSpeed = updateValue(this.currentSpeed, this.targetSpeed, SPEED_STEP);
+    this.currentPower = updateValue(this.currentPower, this.targetPower, POWER_STEP);
+    
+    this.zoneBar.updatePower(this.currentPower);
 
     var lines = [];
     var power_perc = this.zoneBar.getPowerPerc();
     
-    lines.push(`${CADENCE_LABEL} ${this.pad(this.cadence, this.metric_padding)}`);
-    lines.push(`${SPEED_LABEL} ${this.pad(this.speed, this.metric_padding)}`);
-    lines.push(`${POWER_LABEL} ${this.pad(this.power, this.metric_padding)}`);
+    lines.push(`${CADENCE_LABEL} ${this.pad(this.currentCadence, this.metric_padding)}`);
+    lines.push(`${SPEED_LABEL} ${this.pad(this.currentSpeed, this.metric_padding)}`);
+    lines.push(`${POWER_LABEL} ${this.pad(this.currentPower, this.metric_padding)}`);
     lines.push(`${POWER_PERC_LABEL} ${this.pad(power_perc, this.metric_padding)}`);
 
     this.buffer.clear();
