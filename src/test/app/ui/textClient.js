@@ -8,6 +8,7 @@ test('equal values', t => {
     t.equal(value, 10.3, 'float value');
     value = updateValue("10", "10", 1);
     t.equal(value, "10", 'string value');
+    t.end();
   });
 
 test('Smaller increasing values', t => {
@@ -17,6 +18,7 @@ test('Smaller increasing values', t => {
     t.equal(value, 12.0, 'float value');
     value = updateValue("10", "13", 1);
     t.equal(value, 11, 'string value');
+    t.end();
   });
 
 test('Larger increasing values', t => {
@@ -26,6 +28,7 @@ test('Larger increasing values', t => {
     t.equal(value, 13.0, 'float value');
     value = updateValue("10", "13", 5);
     t.equal(value, 13, 'string value');
+    t.end();
   });
 
 test('Smaller decreasing values', t => {
@@ -35,6 +38,7 @@ test('Smaller decreasing values', t => {
     t.equal(value, 9.0, 'float value');
     value = updateValue("10", "8", 1);
     t.equal(value, 9, 'string value');
+    t.end();
   });
 
 test('Larger decreasing values', t => {
@@ -44,4 +48,5 @@ test('Larger decreasing values', t => {
     t.equal(value, 8.0, 'float value');
     value = updateValue("10", "8", 5);
     t.equal(value, 8, 'string value');
+    t.end();
   });
