@@ -140,5 +140,20 @@ export class TextClient {
     }
     this.yPos += this.sprites['A'].height;
   }
+
+}
+
+export function updateValue(currentValue, targetValue, step) {
+  if (currentValue === targetValue) return targetValue;
+
+  let signal = targetValue > currentValue ? 1 : -1;
+  let actualStep = step * signal;
+  let newValue = currentValue + actualStep;
+  let diff = (newValue - targetValue) * signal;
+  if (diff > 0) {
+    newValue = targetValue;
+  }
+  
+  return newValue;
 }
 
