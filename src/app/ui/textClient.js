@@ -12,9 +12,9 @@ const CHARACTERS = ['0', '1', '2', '3',
     'A', 'C', 'D', 'E', 'L', 'P', 
     'R', 'T', 'V', 'O'];
 
-const CADENCE_STEP = 5;
-const SPEED_STEP = 2;
-const POWER_STEP = 10;
+const CADENCE_STEP = 2;
+const SPEED_STEP = 1;
+const POWER_STEP = 5;
 
 const termkit = require('terminal-kit');
 
@@ -164,7 +164,7 @@ function toNumber(value) {
 export function updateValue(currentValue, targetValue, step) {
   currentValue = toNumber(currentValue);
   targetValue = toNumber(targetValue);
-  
+
   if (currentValue === targetValue) return targetValue;
 
   let signal = targetValue > currentValue ? 1 : -1;
