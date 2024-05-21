@@ -1,7 +1,7 @@
 import { Palette } from "terminal-kit";
 import { ZoneBar } from "./zoneBar";
 
-const TIMEOUT = 2000; // 1000 miliseconds - 1 second
+const TIMEOUT = 500; // 500 miliseconds - 0.5 second
 const CADENCE_LABEL = "CAD";
 const SPEED_LABEL = "VEL";
 const POWER_LABEL = "POT";
