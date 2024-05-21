@@ -1,5 +1,5 @@
 import {test} from 'tape';
-import {updateValue} from '../../app/ui/textClient';
+import {updateValue} from '../../../app/ui/textClient';
 
 test('equal values', t => {
     let value = updateValue(10, 10, 1);
