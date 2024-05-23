@@ -1,7 +1,7 @@
 import { Palette } from "terminal-kit";
 import { ZoneBar } from "./zoneBar";
 
-const TIMEOUT = 500; // 500 miliseconds - 0.5 second
+const TIMEOUT = 2000; // 2000 miliseconds - 2 seconds
 const CADENCE_LABEL = "CAD";
 const SPEED_LABEL = "VEL";
 const POWER_LABEL = "POT";
@@ -15,6 +15,7 @@ const CHARACTERS = ['0', '1', '2', '3',
 const CADENCE_STEP = 2;
 const SPEED_STEP = 1;
 const POWER_STEP = 5;
+const STEP_FACTOR = 0.33;
 
 const termkit = require('terminal-kit');
 
@@ -166,6 +167,9 @@ export function updateValue(currentValue, targetValue, step) {
   targetValue = toNumber(targetValue);
 
   if (currentValue === targetValue) return targetValue;
+
+  let difference = Math.abs(currentValue - targetValue);
+  step = Math.max(step, Math.floor(difference * STEP_FACTOR));
 
   let signal = targetValue > currentValue ? 1 : -1;
   let actualStep = step * signal;

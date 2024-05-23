@@ -50,3 +50,25 @@ test('Larger decreasing values', t => {
     t.equal(value, 8, 'string value');
     t.end();
   });
+
+  test('Large difference', t => {
+    let value = 10;
+    value = updateValue(value, 100, 1);
+    t.equal(value, 50, 'integer value');
+    value = updateValue(value, 100, 1);
+    t.equal(value, 75, 'integer value');
+    value = updateValue(value, 100, 1);
+    t.equal(value, 87, 'integer value');
+    value = updateValue(value, 100, 1);
+    t.equal(value, 93, 'integer value');
+    value = updateValue(value, 100, 1);
+    t.equal(value, 96, 'integer value');
+    value = updateValue(value, 100, 1);
+    t.equal(value, 98, 'integer value');
+    value = updateValue(value, 100, 1);
+    t.equal(value, 99, 'integer value');
+    value = updateValue(value, 100, 1);
+    t.equal(value, 100, 'integer value');
+    t.end();
+  });
+
