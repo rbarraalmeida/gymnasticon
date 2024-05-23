@@ -54,15 +54,15 @@ test('Larger decreasing values', t => {
   test('Large difference', t => {
     let value = 10;
     value = updateValue(value, 100, 1);
-    t.equal(value, 50, 'integer value');
+    t.equal(value, 55, 'integer value');
     value = updateValue(value, 100, 1);
-    t.equal(value, 75, 'integer value');
+    t.equal(value, 77, 'integer value');
     value = updateValue(value, 100, 1);
-    t.equal(value, 87, 'integer value');
+    t.equal(value, 88, 'integer value');
     value = updateValue(value, 100, 1);
-    t.equal(value, 93, 'integer value');
+    t.equal(value, 94, 'integer value');
     value = updateValue(value, 100, 1);
-    t.equal(value, 96, 'integer value');
+    t.equal(value, 97, 'integer value');
     value = updateValue(value, 100, 1);
     t.equal(value, 98, 'integer value');
     value = updateValue(value, 100, 1);

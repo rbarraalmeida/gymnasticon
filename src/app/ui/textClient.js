@@ -15,7 +15,7 @@ const CHARACTERS = ['0', '1', '2', '3',
 const CADENCE_STEP = 2;
 const SPEED_STEP = 1;
 const POWER_STEP = 5;
-const STEP_FACTOR = 0.33;
+const STEP_FACTOR = 0.50;
 
 const termkit = require('terminal-kit');
 
