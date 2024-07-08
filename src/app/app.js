@@ -96,11 +96,7 @@ export class App {
     }
 
     this.opts = opts;
-    if (opts.enableUi) {
-      this.ui = new TextClient(opts.riderFtp);
-    } else {
-      this.ui = null;
-    }
+    this.ui = new TextClient(opts.riderFtp);
     this.logger = new Logger();
     this.crankSimulation = new CrankSimulation();
     this.wheelSimulation = new WheelSimulation();
@@ -167,7 +163,7 @@ export class App {
       this.pingInterval.reset();
       this.statsTimeout.reset();
 
-      if (this.ui) {
+      if (this.opts.enableUi) {
         this.ui.build();
       }
     } catch (e) {
