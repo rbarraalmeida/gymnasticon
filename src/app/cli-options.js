@@ -122,5 +122,10 @@ export const options = {
     describe: '<value> log to file',
     type: 'number',
     default: defaults.logToFile,
-  }
+  },
+  'enable-ui': {
+    describe: '<value> enable ui',
+    type: 'number',
+    default: defaults.enableUi,
+  },
 };

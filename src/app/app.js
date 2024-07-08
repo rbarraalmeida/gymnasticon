@@ -65,6 +65,8 @@ export const defaults = {
   riderFtp: 209, // Rider's FTP in Watts.
 
   logToFile: 0, // whether to log to file
+
+  enableUi: 0, // whether to enable ui.
 };
 
 /**
@@ -94,7 +96,11 @@ export class App {
     }
 
     this.opts = opts;
-    this.ui = new TextClient(opts.riderFtp);
+    if (opts.enableUi) {
+      this.ui = new TextClient(opts.riderFtp);
+    } else {
+      this.ui = null;
+    }
     this.logger = new Logger();
     this.crankSimulation = new CrankSimulation();
     this.wheelSimulation = new WheelSimulation();
@@ -137,10 +143,9 @@ export class App {
           log_file.write('\n');
           
         };      
-      } else {
+      } else if (this.opts.enableUi) {
         console.log = function() {}
       }
-      
       
       process.on('SIGINT', this.onSigInt);
       process.on('exit', this.onExit);
@@ -162,7 +167,9 @@ export class App {
       this.pingInterval.reset();
       this.statsTimeout.reset();
 
-      this.ui.build();
+      if (this.ui) {
+        this.ui.build();
+      }
     } catch (e) {
       this.logger.error(e);
       process.exit(1);
@@ -174,7 +181,7 @@ export class App {
     this.crank.timestamp = timestamp;
     this.crank.revolutions++;
     let {power, crank, wheel, cadence} = this;
-    //this.logger.log(`pedal stroke [timestamp=${timestamp} revolutions=${crank.revolutions} cadence=${cadence}rpm power=${power}W]`);
+    this.logger.log(`pedal stroke [timestamp=${timestamp} revolutions=${crank.revolutions} cadence=${cadence}rpm power=${power}W]`);
     //this.server.updateMeasurement({ power, crank, wheel });
     this.antServer.updateMeasurement({ power, cadence, crank, wheel});
   }
@@ -184,13 +191,13 @@ export class App {
     this.wheel.timestamp = timestamp;
     this.wheel.revolutions++;
     let {power, crank, wheel, cadence} = this;
-    //this.logger.log(`wheel rotation [timestamp=${timestamp} revolutions=${wheel.revolutions} speed=${this.wheelSimulation.speed}km/h power=${power}W]`);
+    this.logger.log(`wheel rotation [timestamp=${timestamp} revolutions=${wheel.revolutions} speed=${this.wheelSimulation.speed}km/h power=${power}W]`);
     //this.server.updateMeasurement({ power, crank, wheel });
     this.antServer.updateMeasurement({ power, cadence, crank, wheel});
   }
 
   onPingInterval() {
-    //debuglog(`pinging app since no stats or pedal strokes for ${this.pingInterval.interval}s`);
+    this.logger.log(`pinging app since no stats or pedal strokes for ${this.pingInterval.interval}s`);
     let {power, crank, wheel, cadence} = this;
     //this.server.updateMeasurement({ power, crank, wheel });
     this.antServer.updateMeasurement({ power, cadence, crank, wheel});
